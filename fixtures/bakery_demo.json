@@ -1,0 +1,266 @@
+{
+  "mode": "demo",
+  "conversations": [
+    {
+      "id": "c1",
+      "customer_name": "Ananya Rao",
+      "channel": "Synthetic Instagram-style DM",
+      "messages": [
+        {
+          "id": "m01",
+          "sender": "customer",
+          "sent_at": "2026-11-04T10:00:00+05:30",
+          "text": "Hi! A 2 kg chocolate cake for Saturday, November 7 please."
+        },
+        {
+          "id": "m02",
+          "sender": "baker",
+          "sent_at": "2026-11-04T11:00:00+05:30",
+          "text": "For 2 kg chocolate on Saturday, the quote is ₹1800. Delivery and payment are not confirmed."
+        },
+        {
+          "id": "m03",
+          "sender": "customer",
+          "sent_at": "2026-11-04T12:00:00+05:30",
+          "text": "Change that to 1.5 kg red velvet for Sunday, November 8. Inscription: Happy Birthday, Tara!"
+        },
+        {
+          "id": "m04",
+          "sender": "baker",
+          "sent_at": "2026-11-04T13:00:00+05:30",
+          "text": "Confirmed: 1.5 kg red velvet for Sunday, November 8, with inscription “Happy Birthday, Tara!”. Standard recipe with egg. The earlier quote needs updating; fulfillment details are still open."
+        },
+        {
+          "id": "m05",
+          "sender": "baker",
+          "sent_at": "2026-11-04T14:00:00+05:30",
+          "text": "Starting production now on the confirmed standard recipe: 1.5 kg red velvet for Sunday, November 8."
+        },
+        {
+          "id": "m06",
+          "sender": "customer",
+          "sent_at": "2026-11-04T15:00:00+05:30",
+          "text": "Wait, can you make it eggless? Please check before continuing."
+        },
+        {
+          "id": "m07",
+          "sender": "customer",
+          "sent_at": "2026-11-04T16:00:00+05:30",
+          "text": "I paid. Can you check it?"
+        }
+      ],
+      "orders": [
+        {
+          "id": "OG-1042",
+          "status": "in_production",
+          "requested": {
+            "size": {
+              "value": "1.5 kg",
+              "evidence": {
+                "message_ids": [
+                  "m03"
+                ]
+              }
+            },
+            "flavor": {
+              "value": "Red velvet",
+              "evidence": {
+                "message_ids": [
+                  "m03"
+                ]
+              }
+            },
+            "date": {
+              "value": "Sunday, 8 November 2026",
+              "evidence": {
+                "message_ids": [
+                  "m03"
+                ]
+              }
+            },
+            "dietary": {
+              "value": "Eggless requested",
+              "evidence": {
+                "message_ids": [
+                  "m06"
+                ]
+              }
+            },
+            "inscription": {
+              "value": "Happy Birthday, Tara!",
+              "evidence": {
+                "message_ids": [
+                  "m03"
+                ]
+              }
+            }
+          },
+          "accepted": {
+            "size": {
+              "value": "1.5 kg",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            },
+            "flavor": {
+              "value": "Red velvet",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            },
+            "date": {
+              "value": "Sunday, 8 November 2026",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            },
+            "dietary": {
+              "value": "Standard recipe with egg",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            },
+            "inscription": {
+              "value": "Happy Birthday, Tara!",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            }
+          },
+          "production": {
+            "size": {
+              "value": "1.5 kg",
+              "evidence": {
+                "message_ids": [
+                  "m05"
+                ]
+              }
+            },
+            "flavor": {
+              "value": "Red velvet",
+              "evidence": {
+                "message_ids": [
+                  "m05"
+                ]
+              }
+            },
+            "date": {
+              "value": "Sunday, 8 November 2026",
+              "evidence": {
+                "message_ids": [
+                  "m05"
+                ]
+              }
+            },
+            "dietary": {
+              "value": "Standard recipe with egg",
+              "evidence": {
+                "message_ids": [
+                  "m05"
+                ]
+              }
+            },
+            "inscription": {
+              "value": "Happy Birthday, Tara!",
+              "evidence": {
+                "message_ids": [
+                  "m04"
+                ]
+              }
+            }
+          },
+          "quote": {
+            "value": "₹1800 · outdated; revised quote needed",
+            "evidence": {
+              "message_ids": [
+                "m02",
+                "m03",
+                "m04"
+              ]
+            }
+          },
+          "payment": {
+            "value": "Claimed · pending human verification",
+            "evidence": {
+              "message_ids": [
+                "m07"
+              ]
+            }
+          },
+          "fulfillment": {
+            "value": "Not confirmed",
+            "evidence": {
+              "message_ids": [
+                "m02",
+                "m04"
+              ]
+            }
+          }
+        }
+      ],
+      "alerts": [
+        {
+          "id": "a1",
+          "priority": "critical",
+          "title": "Eggless change after production started",
+          "detail": "Owner review required. The production plan still uses egg. Suitability and cross-contact safety have not been verified.",
+          "evidence": {
+            "message_ids": [
+              "m05",
+              "m06"
+            ]
+          }
+        },
+        {
+          "id": "a2",
+          "priority": "warning",
+          "title": "Earlier quote needs revision",
+          "detail": "₹1800 covered the original size and flavor. No final agreed price for the revised request.",
+          "evidence": {
+            "message_ids": [
+              "m02",
+              "m03",
+              "m04"
+            ]
+          }
+        },
+        {
+          "id": "a3",
+          "priority": "warning",
+          "title": "Payment is only claimed",
+          "detail": "No trusted payment verification has taken place.",
+          "evidence": {
+            "message_ids": [
+              "m07"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "customer_name": "Kabir Shah",
+      "channel": "Synthetic Instagram-style DM",
+      "messages": [
+        {
+          "id": "k01",
+          "sender": "customer",
+          "sent_at": "2026-11-04T09:30:00+05:30",
+          "text": "Hello! Do you make birthday cupcakes? Just browsing for now."
+        }
+      ],
+      "orders": [],
+      "alerts": []
+    }
+  ]
+}

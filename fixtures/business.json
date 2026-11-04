@@ -1,0 +1,54 @@
+{
+  "id": "little-crumb-v1",
+  "name": "The Little Crumb",
+  "currency": "INR",
+  "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+  "products": {
+    "chocolate": {
+      "name": "Chocolate cake",
+      "sizes": {
+        "1": 900,
+        "1.5": 1350,
+        "2": 1800
+      }
+    },
+    "red_velvet": {
+      "name": "Red velvet cake",
+      "sizes": {
+        "1": 1100,
+        "1.5": 1650,
+        "2": 2200
+      }
+    }
+  },
+  "customizations": {
+    "eggless": 150,
+    "floral_decoration": 250
+  },
+  "addons": {
+    "candles": 50,
+    "birthday_topper": 100
+  },
+  "fulfillment": {
+    "pickup": 0,
+    "delivery_indiranagar": 100
+  },
+  "policy": {
+    "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+    "lead_days": 2,
+    "daily_capacity": 3,
+    "closed_dates": [],
+    "deposit_percent": 50,
+    "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+    "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+    "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+    "automatable_actions": [
+      "clarify",
+      "quote",
+      "accept_current_quote",
+      "cancel_unaccepted_draft"
+    ],
+    "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+    "pricing": "fixed"
+  }
+}
