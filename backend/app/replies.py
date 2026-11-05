@@ -5,6 +5,7 @@ position, including required caveats, rather than trying to detect arbitrary
 promises with a blacklist. No free-form customer text becomes reply authority.
 """
 from .provider import ModelError
+from decimal import Decimal
 
 
 def label(value):
@@ -17,10 +18,15 @@ def quote_details(offer, config):
     values = {k: v.value for k, v in offer.spec.items()}
     qty = int(values['quantity'])
     product = config['products'][values['product']]
-    lines = [f"{qty} × {product['name']} ({values['size']} kg): ₹{product['sizes'][values['size']] * qty}"]
+    unit = product.get('unit', 'kg')
+    variant = f"{values['size']} {unit}" if unit in {'kg','g','stems','roses','litres','meters'} else values['size']
+    suffix = '' if values['size'] in product['name'].split() else f' ({variant})'
+    lines = [f"{qty} × {product['name']}{suffix}: ₹{product['sizes'][values['size']] * qty}"]
     for group in ('customizations', 'addons'):
         for key in filter(None, (part.strip() for part in values.get(group, '').split(','))):
-            lines.append(f'{label(key)} × {qty}: ₹{config[group][key] * qty}')
+            lines.append(f'{label(key)} × {qty}: ₹{int(Decimal(config[group][key]) * qty * (Decimal(values['size']) if config.get('extra_units', {}).get(key) == 'per_size' else 1))}')
+    if values.get('delivery_address'):
+        lines.append(f"Delivery address: {values['delivery_address']}")
     fee = config['fulfillment'][values['fulfillment']]
     lines.append(f"{label(values['fulfillment'])}: ₹{fee}")
     lines += [f'Total: ₹{offer.total}', f'Deposit: ₹{offer.deposit}',
@@ -36,10 +42,10 @@ def cheaper_options(offer, config):
     options = []
     sizes = config['products'][v['product']]['sizes']
     cheaper = [(size, amount) for size, amount in sizes.items()
-               if float(size) < float(v['size']) and amount < sizes[v['size']]]
+               if size.replace('.', '', 1).isdigit() and v['size'].replace('.', '', 1).isdigit() and float(size) < float(v['size']) and amount < sizes[v['size']]]
     if cheaper:
         size, _ = min(cheaper, key=lambda entry: float(entry[0]))
-        options.append(f'a {size} kg size')
+        options.append(f"a {size} {config['products'][v['product']].get('unit','kg')} size")
     # Eggless may be a dietary need, so never suggest removing it to save money.
     optional = [key for group in ('customizations', 'addons')
                 for key in v.get(group, '').split(',')
@@ -81,6 +87,7 @@ def plan_reply(s, config, action, discount_requested=False, dietary_note=False):
             'size': 'What size would you like?',
             'quantity': 'How many cakes would you like?',
             'date': 'What date is it for?',
+            'delivery_address': 'What is the delivery address, including the service area?',
             'fulfillment': 'Would you prefer ' + ' or '.join(label(key).lower() for key in config['fulfillment']) + '?',
         }
         groups.append([' '.join(questions[key] for key in s.missing_fields[:2])])
@@ -101,11 +108,17 @@ def plan_reply(s, config, action, discount_requested=False, dietary_note=False):
     elif action == 'association':
         groups += [['Could you clarify which cake order this is for? I’ll ask the owner to help keep the orders separate.']]
     elif action == 'blocked':
+        names = ', '.join(p['name'] for p in config['products'].values())
+        groups.append([f'Our listed options are {names}. I can help with those at their fixed prices.'])
         groups += [['I’ll need the owner to check that option or date before quoting. I haven’t confirmed the change.']]
     elif action == 'fulfillment':
         groups += [['I’ll ask the owner to check that pickup or delivery time. I can’t confirm an exact slot yet.']]
     else:
         groups += [['I can help with our cakes at their listed prices. What would you like to know?']]
+    if config.get('category', '').lower() not in ('', 'bakery'):
+        groups = [[text.replace('cakes', 'items').replace('Cakes', 'Items').replace('cake', 'item').replace('Cake', 'Item').replace('kitchen', 'workspace') for text in group] for group in groups]
+    if 'formal' in config.get('tone', '').lower():
+        groups = [[text.replace('Hi!', 'Hello.').replace('Lovely,', 'Thank you,').replace('Happy to help!', 'I can assist.').replace('Thanks', 'Thank you') for text in group] for group in groups]
     return groups
 
 

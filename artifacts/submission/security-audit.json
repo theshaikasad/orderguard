@@ -1,0 +1,7 @@
+{
+  "candidate_files": 101,
+  "configured_private_values_compared": 3,
+  "findings": [],
+  "scope": "tracked and nonignored candidate files; reachable history scanned separately with no findings",
+  "limitations": "pattern/value scan, not a guarantee against every possible secret"
+}

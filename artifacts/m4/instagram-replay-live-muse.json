@@ -1,0 +1,1195 @@
+[
+  {
+    "status": "processed",
+    "attempts": 1,
+    "transport": "signed_synthetic_replay",
+    "outbound": "disabled",
+    "state": {
+      "last_turn_metrics": {
+        "policy_evaluation_ms": 5.42,
+        "interpretation_and_reply": [
+          {
+            "purpose": "Interpretation",
+            "reasoning_effort": "model_default",
+            "latency_ms": 22478,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "reasoning_effort": "model_default",
+            "latency_ms": 9387,
+            "status": "ok"
+          }
+        ],
+        "database_execute_ms": 7.57,
+        "database_statements": 16,
+        "processing_before_save_ms": 31885
+      },
+      "id": "ig-8d1395935ab6c6322efe9ee9efc461e29ddb94fa2316ef8a",
+      "source": "meta",
+      "turns": [
+        {
+          "id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "sender": "customer",
+          "timestamp": "2026-11-04T23:59:37.798000Z",
+          "text": "I need one bouquet of 12 red roses with ribbon wrapping and a handwritten greeting card, delivered to 18 Garden Lane, Indiranagar, Bengaluru on 2026-12-04.",
+          "source": "meta",
+          "reply_source": null
+        },
+        {
+          "id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "sender": "baker",
+          "timestamp": "2026-11-05T05:30:09.684538+05:30",
+          "text": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nRibbon wrapping × 1: ₹50\nHandwritten greeting card × 1: ₹30\nDelivery address: 18 Garden Lane, Indiranagar, Bengaluru\nIndiranagar: ₹80\nTotal: ₹959\nDeposit: ₹0\nRequested date: 2026-12-04\n\nShall we go ahead with these details and this total?",
+          "source": "meta",
+          "reply_source": "meta"
+        }
+      ],
+      "requested_spec": {
+        "product": {
+          "value": "red_roses",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "size": {
+          "value": "12",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "addons": {
+          "value": "ribbon_wrapping,handwritten_greeting_card",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "fulfillment": {
+          "value": "indiranagar",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "delivery_address": {
+          "value": "18 Garden Lane, Indiranagar, Bengaluru",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "date": {
+          "value": "2026-12-04",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        }
+      },
+      "offered_terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "lab-instagram-a3eb8811b17347cfbe81e369a6822175",
+          "name": "Bloom & Co.",
+          "category": "flower shop",
+          "location": "Bengaluru, India",
+          "language": "English",
+          "commercial_reviewed": true,
+          "require_delivery_details": false,
+          "delivery_zones": {
+            "indiranagar": [
+              "Indiranagar"
+            ]
+          },
+          "extra_units": {},
+          "approval_rules": [
+            "accepted_change",
+            "dietary",
+            "exact_slot",
+            "refund_dispute",
+            "unsupported_request"
+          ],
+          "currency": "INR",
+          "tone": "Friendly and casual",
+          "products": {
+            "red_roses": {
+              "name": "bouquet of 12 red roses",
+              "unit": "bouquet",
+              "sizes": {
+                "12": 799
+              }
+            },
+            "mixed_bouquet": {
+              "name": "mixed flower bouquet",
+              "unit": "bouquet",
+              "sizes": {
+                "standard": 499
+              }
+            }
+          },
+          "customizations": {},
+          "addons": {
+            "ribbon_wrapping": 50,
+            "handwritten_greeting_card": 30
+          },
+          "fulfillment": {
+            "pickup": 0,
+            "indiranagar": 80
+          },
+          "policy": {
+            "hours": "10 AM to 6 PM IST",
+            "capacity_unit": "orders",
+            "lead_hours": 24,
+            "lead_days": 0,
+            "daily_capacity": 2,
+            "closed_dates": [],
+            "deposit_percent": 0,
+            "pricing": "fixed",
+            "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+            "dietary": "Any safety or dietary issue needs owner review.",
+            "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ],
+            "availability": "Local capacity ledger; no inventory connection."
+          }
+        },
+        "id": "offer-3",
+        "spec": {
+          "product": {
+            "value": "red_roses",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "size": {
+            "value": "12",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "addons": {
+            "value": "ribbon_wrapping,handwritten_greeting_card",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "fulfillment": {
+            "value": "indiranagar",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "delivery_address": {
+            "value": "18 Garden Lane, Indiranagar, Bengaluru",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "date": {
+            "value": "2026-12-04",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          }
+        },
+        "subtotal": 879,
+        "discount_percent": 0,
+        "total": 959,
+        "deposit": 0,
+        "evidence": [
+          "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "products.red_roses.sizes.12",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "addons.ribbon_wrapping",
+          "addons.handwritten_greeting_card",
+          "fulfillment.indiranagar",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+      },
+      "awaiting_acceptance_for": "offer-3",
+      "accepted_commitment": null,
+      "production_snapshot": null,
+      "status": "offered",
+      "review_required": false,
+      "payment": "unknown",
+      "missing_fields": [],
+      "decision": "automatic",
+      "alerts": [],
+      "events": [
+        {
+          "id": "e1",
+          "kind": "incoming",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "I need one bouquet of 12 red roses with ribbon wrapping and a handwritten greeting card, delivered to 18 Garden Lane, Indiranagar, Bengaluru on 2026-12-04.",
+          "terms": null,
+          "requested_spec": null
+        },
+        {
+          "id": "e2",
+          "kind": "requested_spec_changed",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "Customer request interpreted by model; not a commitment",
+          "terms": null,
+          "requested_spec": {
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "addons": {
+              "value": "ribbon_wrapping,handwritten_greeting_card",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "fulfillment": {
+              "value": "indiranagar",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "delivery_address": {
+              "value": "18 Garden Lane, Indiranagar, Bengaluru",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "date": {
+              "value": "2026-12-04",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            }
+          }
+        },
+        {
+          "id": "e3",
+          "kind": "offered",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "addons.ribbon_wrapping",
+            "addons.handwritten_greeting_card",
+            "fulfillment.indiranagar",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "detail": "offer-3",
+          "terms": {
+            "configuration_version": 1,
+            "configuration_snapshot": {
+              "id": "lab-instagram-a3eb8811b17347cfbe81e369a6822175",
+              "name": "Bloom & Co.",
+              "category": "flower shop",
+              "location": "Bengaluru, India",
+              "language": "English",
+              "commercial_reviewed": true,
+              "require_delivery_details": false,
+              "delivery_zones": {
+                "indiranagar": [
+                  "Indiranagar"
+                ]
+              },
+              "extra_units": {},
+              "approval_rules": [
+                "accepted_change",
+                "dietary",
+                "exact_slot",
+                "refund_dispute",
+                "unsupported_request"
+              ],
+              "currency": "INR",
+              "tone": "Friendly and casual",
+              "products": {
+                "red_roses": {
+                  "name": "bouquet of 12 red roses",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "12": 799
+                  }
+                },
+                "mixed_bouquet": {
+                  "name": "mixed flower bouquet",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "standard": 499
+                  }
+                }
+              },
+              "customizations": {},
+              "addons": {
+                "ribbon_wrapping": 50,
+                "handwritten_greeting_card": 30
+              },
+              "fulfillment": {
+                "pickup": 0,
+                "indiranagar": 80
+              },
+              "policy": {
+                "hours": "10 AM to 6 PM IST",
+                "capacity_unit": "orders",
+                "lead_hours": 24,
+                "lead_days": 0,
+                "daily_capacity": 2,
+                "closed_dates": [],
+                "deposit_percent": 0,
+                "pricing": "fixed",
+                "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                "dietary": "Any safety or dietary issue needs owner review.",
+                "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                "automatable_actions": [
+                  "clarify",
+                  "quote",
+                  "accept_current_quote",
+                  "cancel_unaccepted_draft"
+                ],
+                "availability": "Local capacity ledger; no inventory connection."
+              }
+            },
+            "id": "offer-3",
+            "spec": {
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "addons": {
+                "value": "ribbon_wrapping,handwritten_greeting_card",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "fulfillment": {
+                "value": "indiranagar",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "delivery_address": {
+                "value": "18 Garden Lane, Indiranagar, Bengaluru",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "date": {
+                "value": "2026-12-04",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              }
+            },
+            "subtotal": 879,
+            "discount_percent": 0,
+            "total": 959,
+            "deposit": 0,
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "addons.ribbon_wrapping",
+              "addons.handwritten_greeting_card",
+              "fulfillment.indiranagar",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "message_id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          },
+          "requested_spec": null
+        },
+        {
+          "id": "e4",
+          "kind": "reply",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "Customer reply: meta",
+          "terms": null,
+          "requested_spec": null
+        }
+      ],
+      "assistant_reply": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nRibbon wrapping × 1: ₹50\nHandwritten greeting card × 1: ₹30\nDelivery address: 18 Garden Lane, Indiranagar, Bengaluru\nIndiranagar: ₹80\nTotal: ₹959\nDeposit: ₹0\nRequested date: 2026-12-04\n\nShall we go ahead with these details and this total?"
+    },
+    "latency_ms": 31907,
+    "inference": [
+      {
+        "purpose": "Interpretation",
+        "reasoning_effort": "model_default",
+        "latency_ms": 22478,
+        "status": "ok"
+      },
+      {
+        "purpose": "CustomerReply",
+        "reasoning_effort": "model_default",
+        "latency_ms": 9387,
+        "status": "ok"
+      }
+    ],
+    "receipt": {
+      "received": 1,
+      "receipts": [
+        {
+          "id": "1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "duplicate": false,
+          "status": "pending"
+        }
+      ],
+      "transport": "replay",
+      "outbound": "disabled"
+    },
+    "live_instagram": false
+  },
+  {
+    "status": "processed",
+    "attempts": 1,
+    "transport": "signed_synthetic_replay",
+    "outbound": "disabled",
+    "state": {
+      "last_turn_metrics": {
+        "policy_evaluation_ms": 1.34,
+        "interpretation_and_reply": [
+          {
+            "purpose": "Interpretation",
+            "reasoning_effort": "model_default",
+            "latency_ms": 11217,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "reasoning_effort": "model_default",
+            "latency_ms": 9438,
+            "status": "ok"
+          }
+        ],
+        "database_execute_ms": 42985.94,
+        "database_statements": 16,
+        "processing_before_save_ms": 20667
+      },
+      "id": "ig-8d1395935ab6c6322efe9ee9efc461e29ddb94fa2316ef8a",
+      "source": "meta",
+      "turns": [
+        {
+          "id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "sender": "customer",
+          "timestamp": "2026-11-04T23:59:37.798000Z",
+          "text": "I need one bouquet of 12 red roses with ribbon wrapping and a handwritten greeting card, delivered to 18 Garden Lane, Indiranagar, Bengaluru on 2026-12-04.",
+          "source": "meta",
+          "reply_source": null
+        },
+        {
+          "id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "sender": "baker",
+          "timestamp": "2026-11-05T05:30:09.684538+05:30",
+          "text": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nRibbon wrapping × 1: ₹50\nHandwritten greeting card × 1: ₹30\nDelivery address: 18 Garden Lane, Indiranagar, Bengaluru\nIndiranagar: ₹80\nTotal: ₹959\nDeposit: ₹0\nRequested date: 2026-12-04\n\nShall we go ahead with these details and this total?",
+          "source": "meta",
+          "reply_source": "meta"
+        },
+        {
+          "id": "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "sender": "customer",
+          "timestamp": "2026-11-05T00:00:52.721000Z",
+          "text": "Perfect, let's go ahead!",
+          "source": "meta",
+          "reply_source": null
+        },
+        {
+          "id": "reply-ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "sender": "baker",
+          "timestamp": "2026-11-05T05:31:13.388672+05:30",
+          "text": "Thanks! I’ve confirmed your item details at ₹959.\n\nThe deposit is ₹0. Payment hasn’t been verified, and production hasn’t been scheduled.",
+          "source": "meta",
+          "reply_source": "meta"
+        }
+      ],
+      "requested_spec": {
+        "date": {
+          "value": "2026-12-04",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "size": {
+          "value": "12",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "addons": {
+          "value": "ribbon_wrapping,handwritten_greeting_card",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "product": {
+          "value": "red_roses",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "fulfillment": {
+          "value": "indiranagar",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        },
+        "delivery_address": {
+          "value": "18 Garden Lane, Indiranagar, Bengaluru",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ]
+        }
+      },
+      "offered_terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "lab-instagram-a3eb8811b17347cfbe81e369a6822175",
+          "name": "Bloom & Co.",
+          "tone": "Friendly and casual",
+          "addons": {
+            "ribbon_wrapping": 50,
+            "handwritten_greeting_card": 30
+          },
+          "policy": {
+            "hours": "10 AM to 6 PM IST",
+            "dietary": "Any safety or dietary issue needs owner review.",
+            "pricing": "fixed",
+            "lead_days": 0,
+            "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+            "lead_hours": 24,
+            "availability": "Local capacity ledger; no inventory connection.",
+            "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "orders",
+            "daily_capacity": 2,
+            "deposit_percent": 0,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "flower shop",
+          "currency": "INR",
+          "language": "English",
+          "location": "Bengaluru, India",
+          "products": {
+            "red_roses": {
+              "name": "bouquet of 12 red roses",
+              "unit": "bouquet",
+              "sizes": {
+                "12": 799
+              }
+            },
+            "mixed_bouquet": {
+              "name": "mixed flower bouquet",
+              "unit": "bouquet",
+              "sizes": {
+                "standard": 499
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "indiranagar": 80
+          },
+          "approval_rules": [
+            "accepted_change",
+            "dietary",
+            "exact_slot",
+            "refund_dispute",
+            "unsupported_request"
+          ],
+          "customizations": {},
+          "delivery_zones": {
+            "indiranagar": [
+              "Indiranagar"
+            ]
+          },
+          "commercial_reviewed": true,
+          "require_delivery_details": false
+        },
+        "id": "offer-3",
+        "spec": {
+          "date": {
+            "value": "2026-12-04",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "size": {
+            "value": "12",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "addons": {
+            "value": "ribbon_wrapping,handwritten_greeting_card",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "product": {
+            "value": "red_roses",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "fulfillment": {
+            "value": "indiranagar",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          },
+          "delivery_address": {
+            "value": "18 Garden Lane, Indiranagar, Bengaluru",
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+            ]
+          }
+        },
+        "subtotal": 879,
+        "discount_percent": 0,
+        "total": 959,
+        "deposit": 0,
+        "evidence": [
+          "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "products.red_roses.sizes.12",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "addons.ribbon_wrapping",
+          "addons.handwritten_greeting_card",
+          "fulfillment.indiranagar",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+      },
+      "awaiting_acceptance_for": null,
+      "accepted_commitment": {
+        "terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "lab-instagram-a3eb8811b17347cfbe81e369a6822175",
+            "name": "Bloom & Co.",
+            "tone": "Friendly and casual",
+            "addons": {
+              "ribbon_wrapping": 50,
+              "handwritten_greeting_card": 30
+            },
+            "policy": {
+              "hours": "10 AM to 6 PM IST",
+              "dietary": "Any safety or dietary issue needs owner review.",
+              "pricing": "fixed",
+              "lead_days": 0,
+              "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+              "lead_hours": 24,
+              "availability": "Local capacity ledger; no inventory connection.",
+              "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+              "closed_dates": [],
+              "capacity_unit": "orders",
+              "daily_capacity": 2,
+              "deposit_percent": 0,
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ]
+            },
+            "category": "flower shop",
+            "currency": "INR",
+            "language": "English",
+            "location": "Bengaluru, India",
+            "products": {
+              "red_roses": {
+                "name": "bouquet of 12 red roses",
+                "unit": "bouquet",
+                "sizes": {
+                  "12": 799
+                }
+              },
+              "mixed_bouquet": {
+                "name": "mixed flower bouquet",
+                "unit": "bouquet",
+                "sizes": {
+                  "standard": 499
+                }
+              }
+            },
+            "extra_units": {},
+            "fulfillment": {
+              "pickup": 0,
+              "indiranagar": 80
+            },
+            "approval_rules": [
+              "accepted_change",
+              "dietary",
+              "exact_slot",
+              "refund_dispute",
+              "unsupported_request"
+            ],
+            "customizations": {},
+            "delivery_zones": {
+              "indiranagar": [
+                "Indiranagar"
+              ]
+            },
+            "commercial_reviewed": true,
+            "require_delivery_details": false
+          },
+          "id": "offer-3",
+          "spec": {
+            "date": {
+              "value": "2026-12-04",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "addons": {
+              "value": "ribbon_wrapping,handwritten_greeting_card",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "fulfillment": {
+              "value": "indiranagar",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "delivery_address": {
+              "value": "18 Garden Lane, Indiranagar, Bengaluru",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            }
+          },
+          "subtotal": 879,
+          "discount_percent": 0,
+          "total": 959,
+          "deposit": 0,
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "addons.ribbon_wrapping",
+            "addons.handwritten_greeting_card",
+            "fulfillment.indiranagar",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+        },
+        "evidence": [
+          "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+        ]
+      },
+      "production_snapshot": null,
+      "status": "accepted",
+      "review_required": false,
+      "payment": "unknown",
+      "missing_fields": [],
+      "decision": "automatic",
+      "alerts": [],
+      "events": [
+        {
+          "id": "e1",
+          "kind": "incoming",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "I need one bouquet of 12 red roses with ribbon wrapping and a handwritten greeting card, delivered to 18 Garden Lane, Indiranagar, Bengaluru on 2026-12-04.",
+          "terms": null,
+          "requested_spec": null
+        },
+        {
+          "id": "e2",
+          "kind": "requested_spec_changed",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "Customer request interpreted by model; not a commitment",
+          "terms": null,
+          "requested_spec": {
+            "date": {
+              "value": "2026-12-04",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "addons": {
+              "value": "ribbon_wrapping,handwritten_greeting_card",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "fulfillment": {
+              "value": "indiranagar",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            },
+            "delivery_address": {
+              "value": "18 Garden Lane, Indiranagar, Bengaluru",
+              "evidence": [
+                "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+              ]
+            }
+          }
+        },
+        {
+          "id": "e3",
+          "kind": "offered",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "addons.ribbon_wrapping",
+            "addons.handwritten_greeting_card",
+            "fulfillment.indiranagar",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "detail": "offer-3",
+          "terms": {
+            "configuration_version": 1,
+            "configuration_snapshot": {
+              "id": "lab-instagram-a3eb8811b17347cfbe81e369a6822175",
+              "name": "Bloom & Co.",
+              "tone": "Friendly and casual",
+              "addons": {
+                "ribbon_wrapping": 50,
+                "handwritten_greeting_card": 30
+              },
+              "policy": {
+                "hours": "10 AM to 6 PM IST",
+                "dietary": "Any safety or dietary issue needs owner review.",
+                "pricing": "fixed",
+                "lead_days": 0,
+                "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                "lead_hours": 24,
+                "availability": "Local capacity ledger; no inventory connection.",
+                "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                "closed_dates": [],
+                "capacity_unit": "orders",
+                "daily_capacity": 2,
+                "deposit_percent": 0,
+                "automatable_actions": [
+                  "clarify",
+                  "quote",
+                  "accept_current_quote",
+                  "cancel_unaccepted_draft"
+                ]
+              },
+              "category": "flower shop",
+              "currency": "INR",
+              "language": "English",
+              "location": "Bengaluru, India",
+              "products": {
+                "red_roses": {
+                  "name": "bouquet of 12 red roses",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "12": 799
+                  }
+                },
+                "mixed_bouquet": {
+                  "name": "mixed flower bouquet",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "standard": 499
+                  }
+                }
+              },
+              "extra_units": {},
+              "fulfillment": {
+                "pickup": 0,
+                "indiranagar": 80
+              },
+              "approval_rules": [
+                "accepted_change",
+                "dietary",
+                "exact_slot",
+                "refund_dispute",
+                "unsupported_request"
+              ],
+              "customizations": {},
+              "delivery_zones": {
+                "indiranagar": [
+                  "Indiranagar"
+                ]
+              },
+              "commercial_reviewed": true,
+              "require_delivery_details": false
+            },
+            "id": "offer-3",
+            "spec": {
+              "date": {
+                "value": "2026-12-04",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "addons": {
+                "value": "ribbon_wrapping,handwritten_greeting_card",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "fulfillment": {
+                "value": "indiranagar",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              },
+              "delivery_address": {
+                "value": "18 Garden Lane, Indiranagar, Bengaluru",
+                "evidence": [
+                  "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+                ]
+              }
+            },
+            "subtotal": 879,
+            "discount_percent": 0,
+            "total": 959,
+            "deposit": 0,
+            "evidence": [
+              "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "addons.ribbon_wrapping",
+              "addons.handwritten_greeting_card",
+              "fulfillment.indiranagar",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "message_id": "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          },
+          "requested_spec": null
+        },
+        {
+          "id": "e4",
+          "kind": "reply",
+          "message_id": "ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047",
+          "evidence": [
+            "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "Customer reply: meta",
+          "terms": null,
+          "requested_spec": null
+        },
+        {
+          "id": "e5",
+          "kind": "incoming",
+          "message_id": "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "evidence": [
+            "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3"
+          ],
+          "detail": "Perfect, let's go ahead!",
+          "terms": null,
+          "requested_spec": null
+        },
+        {
+          "id": "e6",
+          "kind": "accepted",
+          "message_id": "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "evidence": [
+            "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+            "reply-ig-1f58b9145b24d108d7ac38887338b3ea3229833b9c1e418250343f907bfd1047"
+          ],
+          "detail": "offer-3",
+          "terms": null,
+          "requested_spec": null
+        },
+        {
+          "id": "e7",
+          "kind": "reply",
+          "message_id": "ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "evidence": [
+            "reply-ig-c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3"
+          ],
+          "detail": "Customer reply: meta",
+          "terms": null,
+          "requested_spec": null
+        }
+      ],
+      "assistant_reply": "Thanks! I’ve confirmed your item details at ₹959.\n\nThe deposit is ₹0. Payment hasn’t been verified, and production hasn’t been scheduled."
+    },
+    "latency_ms": 20686,
+    "inference": [
+      {
+        "purpose": "Interpretation",
+        "reasoning_effort": "model_default",
+        "latency_ms": 11217,
+        "status": "ok"
+      },
+      {
+        "purpose": "CustomerReply",
+        "reasoning_effort": "model_default",
+        "latency_ms": 9438,
+        "status": "ok"
+      }
+    ],
+    "receipt": {
+      "received": 1,
+      "receipts": [
+        {
+          "id": "c125d0397b605657bc89340953f5f2897a7e00a9b7d3474fa53720c8ccbbb3e3",
+          "duplicate": false,
+          "status": "pending"
+        }
+      ],
+      "transport": "replay",
+      "outbound": "disabled"
+    },
+    "live_instagram": false
+  }
+]

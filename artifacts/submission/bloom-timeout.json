@@ -1,0 +1,280 @@
+{
+  "business_id": "shop-6e3e0b5f795a45fa937920f1afe9360b",
+  "checks": [
+    {
+      "test": "1a live setup extraction",
+      "passed": true,
+      "actual": {
+        "id": "shop-6e3e0b5f795a45fa937920f1afe9360b",
+        "name": "Bloom & Co.",
+        "tone": "friendly and casual",
+        "addons": {},
+        "policy": {
+          "hours": "",
+          "dietary": "",
+          "pricing": "fixed",
+          "lead_days": 0,
+          "escalation": "",
+          "lead_hours": 24,
+          "availability": "Local capacity ledger; no inventory connection.",
+          "cancellation": "",
+          "closed_dates": [],
+          "capacity_unit": "orders",
+          "daily_capacity": 2,
+          "deposit_percent": 0,
+          "automatable_actions": [
+            "clarify",
+            "quote",
+            "accept_current_quote",
+            "cancel_unaccepted_draft"
+          ]
+        },
+        "category": "flower shop",
+        "currency": "INR",
+        "language": "English",
+        "location": "",
+        "products": {
+          "red_roses": {
+            "name": "bouquet of 12 red roses",
+            "unit": "stems",
+            "sizes": {
+              "12": 699
+            }
+          },
+          "mixed_bouquet": {
+            "name": "mixed flower bouquet",
+            "unit": "kg",
+            "sizes": {
+              "1": 499
+            }
+          }
+        },
+        "extra_units": {},
+        "fulfillment": {
+          "pickup": 0,
+          "delivery": 80
+        },
+        "approval_rules": [],
+        "customizations": {},
+        "delivery_zones": {},
+        "commercial_reviewed": false,
+        "require_delivery_details": true
+      }
+    },
+    {
+      "test": "1b extracted commercial rules",
+      "passed": true,
+      "actual": {
+        "id": "shop-6e3e0b5f795a45fa937920f1afe9360b",
+        "name": "Bloom & Co.",
+        "tone": "friendly and casual",
+        "addons": {
+          "gift_wrapping": 50,
+          "greeting_card": 30
+        },
+        "policy": {
+          "hours": "10 AM to 6 PM IST",
+          "dietary": "Any safety or dietary issue needs owner review.",
+          "pricing": "fixed",
+          "lead_days": 0,
+          "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+          "lead_hours": 24,
+          "availability": "Local capacity ledger; no inventory connection.",
+          "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+          "closed_dates": [],
+          "capacity_unit": "orders",
+          "daily_capacity": 2,
+          "deposit_percent": 0,
+          "automatable_actions": [
+            "clarify",
+            "quote",
+            "accept_current_quote",
+            "cancel_unaccepted_draft"
+          ]
+        },
+        "category": "flower shop",
+        "currency": "INR",
+        "language": "English",
+        "location": "Bengaluru, India",
+        "products": {
+          "red_roses": {
+            "name": "bouquet of 12 red roses",
+            "unit": "stems",
+            "sizes": {
+              "12": 699
+            }
+          },
+          "mixed_bouquet": {
+            "name": "mixed flower bouquet",
+            "unit": "kg",
+            "sizes": {
+              "1": 499
+            }
+          }
+        },
+        "extra_units": {},
+        "fulfillment": {
+          "pickup": 0,
+          "delivery": 80
+        },
+        "approval_rules": [
+          "accepted_change",
+          "refund_dispute",
+          "dietary",
+          "unsupported_request",
+          "exact_slot"
+        ],
+        "customizations": {},
+        "delivery_zones": {
+          "delivery": [
+            "Indiranagar"
+          ]
+        },
+        "commercial_reviewed": true,
+        "require_delivery_details": true
+      }
+    },
+    {
+      "test": "1 published PostgreSQL rules",
+      "passed": true,
+      "actual": {
+        "version": 1,
+        "config": {
+          "id": "shop-6e3e0b5f795a45fa937920f1afe9360b",
+          "name": "Bloom & Co.",
+          "tone": "friendly and casual",
+          "addons": {
+            "gift_wrapping": 50,
+            "greeting_card": 30
+          },
+          "policy": {
+            "hours": "10 AM to 6 PM IST",
+            "dietary": "Any safety or dietary issue needs owner review.",
+            "pricing": "fixed",
+            "lead_days": 0,
+            "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+            "lead_hours": 24,
+            "availability": "Local capacity ledger; no inventory connection.",
+            "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "orders",
+            "daily_capacity": 2,
+            "deposit_percent": 0,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "flower shop",
+          "currency": "INR",
+          "language": "English",
+          "location": "Bengaluru, India",
+          "products": {
+            "red_roses": {
+              "name": "bouquet of 12 red roses",
+              "unit": "stems",
+              "sizes": {
+                "12": 699
+              }
+            },
+            "mixed_bouquet": {
+              "name": "mixed flower bouquet",
+              "unit": "kg",
+              "sizes": {
+                "1": 499
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "delivery": 80
+          },
+          "approval_rules": [
+            "accepted_change",
+            "refund_dispute",
+            "dietary",
+            "unsupported_request",
+            "exact_slot"
+          ],
+          "customizations": {},
+          "delivery_zones": {
+            "delivery": [
+              "Indiranagar"
+            ]
+          },
+          "commercial_reviewed": true,
+          "require_delivery_details": true
+        }
+      }
+    }
+  ],
+  "timings": [
+    {
+      "path": "/api/businesses",
+      "http_status": 200,
+      "end_to_end_ms": 68,
+      "database": "db;dur=2.18",
+      "sql_statements": "2",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/settings/chat",
+      "http_status": 200,
+      "end_to_end_ms": 86660,
+      "database": "db;dur=11.41",
+      "sql_statements": "12",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/settings/chat",
+      "http_status": 200,
+      "end_to_end_ms": 71003,
+      "database": "db;dur=12.71",
+      "sql_statements": "12",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/settings/draft",
+      "http_status": 200,
+      "end_to_end_ms": 34,
+      "database": "db;dur=5.44",
+      "sql_statements": "9",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/settings/publish",
+      "http_status": 200,
+      "end_to_end_ms": 32,
+      "database": "db;dur=11.83",
+      "sql_statements": "10",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/settings/pause",
+      "http_status": 200,
+      "end_to_end_ms": 28,
+      "database": "db;dur=3.72",
+      "sql_statements": "6",
+      "duplicate_delivery": false
+    },
+    {
+      "path": "/api/conversations/bloom-005203/messages",
+      "http_status": 503,
+      "end_to_end_ms": 45370,
+      "database": "db;dur=5.42",
+      "sql_statements": "5",
+      "duplicate_delivery": false
+    }
+  ],
+  "scenarios": [],
+  "performance": {
+    "customer_http": {
+      "median_ms": 45370,
+      "slowest_ms": 45370,
+      "samples": 1
+    }
+  }
+}

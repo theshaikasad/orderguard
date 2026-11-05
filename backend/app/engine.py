@@ -1,5 +1,8 @@
 """Transactional orchestrator. Only validated interpretation enters commercial rules."""
+from time import perf_counter
+from .telemetry import sql_metrics
 import math
+from decimal import Decimal, InvalidOperation
 import re
 from datetime import datetime, date, timedelta
 from pathlib import Path
@@ -43,7 +46,7 @@ def price(spec, config):
         qty = int(values['quantity'])
     except ValueError:
         raise ValueError('Quantity must be a whole number.') from None
-    if not 1 <= qty <= config['policy']['daily_capacity']:
+    if not 1 <= qty <= (config['policy']['daily_capacity'] if config['policy'].get('capacity_unit','items')=='items' else 1000):
         raise ValueError('Requested quantity exceeds the configured daily capacity.')
     base = product['sizes'][values['size']]
     refs = [f"products.{values['product']}.sizes.{values['size']}", 'policy.pricing', 'policy.deposit_percent']
@@ -52,7 +55,14 @@ def price(spec, config):
         if len(ids) != len(set(ids)) or any(i not in config[group] for i in ids):
             raise ValueError(f'Unsupported {group}; the owner needs to check this request.')
         for ident in ids:
-            base += config[group][ident]
+            try:
+                factor = Decimal(values['size']) if config.get('extra_units', {}).get(ident) == 'per_size' else Decimal(1)
+                charge = Decimal(config[group][ident]) * factor
+                if not charge.is_finite() or charge != charge.to_integral_value():
+                    raise ValueError('Fractional rupee customization needs seller review.')
+                base += int(charge)
+            except (InvalidOperation, OverflowError):
+                raise ValueError('Per-size charges require a numeric size; seller review is needed.') from None
             refs.append(f'{group}.{ident}')
     fulfillment = values['fulfillment']
     if fulfillment not in config['fulfillment']:
@@ -84,9 +94,12 @@ def review(s, reason):
     return None
 
 
-def validate_evidence(s, config):
+def validate_evidence(s, config, prior_configs=None):
     mids = {t.id for t in s.turns}
+    historical = (prior_configs or []) + [e.terms.configuration_snapshot for e in s.events if e.terms and e.terms.configuration_snapshot]
     def policy_ref(ref):
+        if any(ref in {f'products.{pid}.sizes.{size}' for pid, product in c['products'].items() for size in product['sizes']} or any(ref == f'{group}.{key}' for group in ('policy','customizations','addons','fulfillment') for key in c[group]) for c in historical):
+            return True
         # Historical M1.1 evidence remains auditable, never active pricing authority.
         if ref in {'policy.max_discount_percent', 'policy.minimum_order_rupees'}:
             return True
@@ -112,11 +125,17 @@ def validate_evidence(s, config):
 
 
 def process(store, provider, cid, incoming: Incoming, now=None):
-    with store.transaction():
-        return _process(store, provider, cid, incoming, now)
+    token = sql_metrics.set([]) if sql_metrics.get() is None else None
+    try:
+        with store.transaction():
+            return _process(store, provider, cid, incoming, now)
+    finally:
+        if token is not None:
+            sql_metrics.reset(token)
 
 
 def _process(store, provider, cid, incoming: Incoming, now=None):
+    began = perf_counter()
     s = store.get(cid)
     existing = next((t for t in s.turns if t.id == incoming.message_id), None)
     if existing:
@@ -130,8 +149,13 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
     if customer_turns and incoming.timestamp <= max(t.timestamp for t in customer_turns):
         raise HTTPException(409, 'Out-of-order message rejected; current state is unchanged. Send a new message ID with a current timestamp.')
     config = store.catalogue()
+    version, paused = store.runtime()
+    if paused or not version:
+        raise HTTPException(409, 'Automation is paused. Publish settings and resume automation to continue.')
     interpretation = provider.interpret({'server_now': now.isoformat(), 'business': config,
         'state': s.model_dump(mode='json'), 'new_message': incoming.model_dump(mode='json')})
+    policy_started = perf_counter()
+    policy_sql_start = sum(sql_metrics.get() or [])
     # Validate extraction evidence before any persisted mutation.
     for p in interpretation.patches:
         if p.message_id != incoming.message_id or p.quote not in incoming.text:
@@ -148,7 +172,7 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
     event(s, 'incoming', mid, incoming.text)
     intents = interpretation.intents
     text = incoming.text.lower()
-    discount_requested = 'discount_request' in intents or bool(re.search(r'discount|cheaper|\d+\s*%|\bprice.{0,15}(?:lower|reduce)|\b(?:deal|negotiate|bargain)\b', text))
+    discount_requested = 'discount_request' in intents or bool(re.search(r'discount|cheaper|\bfree\b|same.{0,15}price|\d+\s*%|\bprice.{0,15}(?:lower|reduce)|\b(?:deal|negotiate|bargain)\b', text))
     claimed = 'payment_claim' in intents or bool(re.search(r'\b(i paid|i have paid|payment sent|paid already)\b', text))
     if claimed:
         s.payment = 'claimed'
@@ -168,14 +192,21 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
         s.awaiting_acceptance_for = None
         if not s.accepted_commitment:
             s.status = 'draft'
-    s.missing_fields = [f for f in REQUIRED if not s.requested_spec.get(f) or not s.requested_spec[f].value]
+    required = list(REQUIRED)
+    fulfillment = s.requested_spec.get('fulfillment')
+    if fulfillment and (fulfillment.value in config.get('delivery_zones', {}) or (config.get('require_delivery_details') and fulfillment.value != 'pickup')):
+        required.append('delivery_address')
+    s.missing_fields = [f for f in required if not s.requested_spec.get(f) or not s.requested_spec[f].value]
     action = 'help'
     routine_ack = bool(re.fullmatch(r'\s*(?:yes|okay|ok|sure)[.!]?\s*', incoming.text, re.I))
     local_ack = (routine_ack and not changes and s.offered_terms and not s.review_required
             and not s.accepted_commitment and not sensitive and not claimed
             and interpretation.association in ('current', 'unknown'))
     # Still run all pricing, capacity and review gates before clarifying.
-    if interpretation.association != 'current' and not local_ack:
+    if 'all_orders' in config.get('approval_rules', []):
+        review(s, 'Seller requires approval for every order.')
+        action = 'blocked'
+    elif interpretation.association != 'current' and not local_ack:
         review(s, 'Please identify the order. Multiple/new independent orders need owner review.')
         action = 'association'
     elif injection:
@@ -215,25 +246,32 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
     else:
         try:
             requested_date = date.fromisoformat(s.requested_spec['date'].value)
-            if requested_date < now.date() + timedelta(days=config['policy']['lead_days']) or requested_date.isoformat() in config['policy']['closed_dates']:
+            if datetime.combine(requested_date, datetime.min.time(), tzinfo=now.tzinfo) < now + timedelta(hours=config['policy'].get('lead_hours') if config['policy'].get('lead_hours') is not None else 24 * config['policy']['lead_days']) or requested_date.isoformat() in config['policy']['closed_dates']:
                 raise ValueError('That date needs an availability check.')
-            occupied = sum(int(other.accepted_commitment.terms.spec['quantity'].value)
+            method = s.requested_spec['fulfillment'].value
+            if method in config.get('delivery_zones', {}) or (config.get('require_delivery_details') and method != 'pickup'):
+                address = s.requested_spec.get('delivery_address')
+                zones = config.get('delivery_zones', {}).get(method, [])
+                if not zones or not address or not any(re.search(r'(?<!\w)'+re.escape(zone)+r'(?!\w)', address.value, re.I) for zone in zones):
+                    raise ValueError('Delivery address needs a service-area check.')
+            occupied = sum((1 if config['policy'].get('capacity_unit')=='orders' else int(other.accepted_commitment.terms.spec['quantity'].value))
                 for other in store.all() if other.id != cid and other.accepted_commitment
                 and other.accepted_commitment.terms.spec['date'].value == requested_date.isoformat())
-            if occupied + int(s.requested_spec['quantity'].value) > config['policy']['daily_capacity']:
+            requested_capacity = 1 if config['policy'].get('capacity_unit')=='orders' else int(s.requested_spec['quantity'].value)
+            if occupied + requested_capacity > config['policy']['daily_capacity']:
                 raise ValueError('The local capacity ledger is full on that date.')
             subtotal, total, deposit, refs = price(s.requested_spec, config)
             refs += ['policy.lead_days', 'policy.daily_capacity', 'policy.availability', 'policy.hours', 'policy.dietary']
             offer = s.offered_terms
             # Recheck every commercial term and requested field, including old discounted records.
-            if offer and (offer.discount_percent != 0 or offer.subtotal != subtotal
+            if offer and ((offer.configuration_version is not None and offer.configuration_version != version) or offer.discount_percent != 0 or offer.subtotal != subtotal
                           or offer.total != total or offer.deposit != deposit
                           or {k: v.value for k, v in offer.spec.items()} != {k: v.value for k, v in s.requested_spec.items()}):
                 event(s, 'offer_invalidated', mid, offer.id, terms=offer)
                 s.offered_terms = None
                 s.awaiting_acceptance_for = None
             explicit = re.fullmatch(r'\s*i accept offer ([a-zA-Z0-9_-]+)[.!]?\s*', incoming.text, re.I)
-            natural = re.fullmatch(r"\s*(?:i accept|i confirm|yes[, ]+go ahead|go ahead|please go ahead|yes[, ]+please go ahead|let[’']s go ahead)[.!]?\s*", incoming.text, re.I)
+            natural = re.fullmatch(r"\s*(?:(?:perfect|great)[,!]?\s*)?(?:i accept|i confirm|yes[, ]+go ahead|go ahead|please go ahead|yes[, ]+please go ahead|let[’']s go ahead)[.!]?\s*", incoming.text, re.I)
             offer = s.offered_terms
             exact_reference = explicit and offer and explicit.group(1).lower() == offer.id.lower()
             contextual_reference = natural and offer and s.awaiting_acceptance_for == offer.id
@@ -247,7 +285,7 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
             else:
                 if s.offered_terms is None:
                     oid = f'offer-{len(s.events)+1}'
-                    s.offered_terms = Offer(id=oid, spec={k: v.model_copy(deep=True) for k, v in s.requested_spec.items()},
+                    s.offered_terms = Offer(configuration_version=version, configuration_snapshot=config, id=oid, spec={k: v.model_copy(deep=True) for k, v in s.requested_spec.items()},
                         subtotal=subtotal, total=total, deposit=deposit,
                         evidence=list(dict.fromkeys([r for v in s.requested_spec.values() for r in v.evidence] + refs)),
                         message_id=f'reply-{mid}')
@@ -266,16 +304,18 @@ def _process(store, provider, cid, incoming: Incoming, now=None):
     invites_acceptance = action in ('quote', 'ambiguous') and not (
         action == 'quote' and discount_requested and cheaper_options(s.offered_terms, config))
     s.awaiting_acceptance_for = s.offered_terms.id if invites_acceptance else None
+    policy_evaluation_ms = max(0, (perf_counter()-policy_started)*1000 - (sum(sql_metrics.get() or [])-policy_sql_start))
     reply, reply_source = compose_reply(provider, groups, {
         'tone': config['tone'], 'permitted_action': action,
         'recent_conversation': [{'speaker': t.sender, 'text': t.text} for t in s.turns[-5:]],
     })
-    if s.decision == 'needs_owner':
+    if s.decision == 'needs_owner' and not any(e.kind == 'owner_review' for e in s.events):
         event(s, 'owner_review', mid, '; '.join(s.alerts))
     s.assistant_reply = gate_reply(reply)
     s.turns.append(Turn(id=f'reply-{mid}', sender='baker', timestamp=datetime.now(ZoneInfo('Asia/Kolkata')),
                         text=s.assistant_reply, source=source, reply_source=reply_source))
     event(s, 'reply', mid, f'Customer reply: {reply_source}', [f'reply-{mid}'])
-    validate_evidence(s, config)
+    validate_evidence(s, config, store.historical_catalogues())
+    s.last_turn_metrics = {'policy_evaluation_ms':round(policy_evaluation_ms,2), 'interpretation_and_reply':getattr(provider,'metrics',[]), 'database_execute_ms':round(sum(sql_metrics.get() or []),2), 'database_statements':len(sql_metrics.get() or []), 'processing_before_save_ms':round((perf_counter()-began)*1000)}
     store.save(s)
     return s

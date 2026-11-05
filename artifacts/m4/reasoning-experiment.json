@@ -1,0 +1,28 @@
+[
+  {
+    "effort": "model_default",
+    "source": "meta",
+    "reply": "Our prices are fixed, so I can’t offer a discount.\n\nWould you like to go ahead at the listed price?",
+    "metrics": [
+      {
+        "purpose": "CustomerReply",
+        "reasoning_effort": "model_default",
+        "latency_ms": 7839,
+        "status": "ok"
+      }
+    ]
+  },
+  {
+    "effort": "low",
+    "source": "meta",
+    "reply": "Our prices are fixed, so I can’t offer a discount.\n\nWould you like to go ahead at the listed price?",
+    "metrics": [
+      {
+        "purpose": "CustomerReply",
+        "reasoning_effort": "low",
+        "latency_ms": 4868,
+        "status": "ok"
+      }
+    ]
+  }
+]

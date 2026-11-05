@@ -1,90 +1,118 @@
 # OrderGuard
 
-Turn messy customer conversations into reliable orders. The fictional Little Crumb bakery uses real Meta Muse interpretation and checked, friendly reply composition, with deterministic fixed prices and explicit acceptance. **M2 adds PostgreSQL persistence and portable Docker deployment.** No Instagram, onboarding, authentication or payment processor is connected.
+Configure once. Automate routine sales. Escalate genuine exceptions.
 
-## Start with Docker
+OrderGuard is a local, synthetic sales and order workspace for small businesses. **M3 adds conversational seller setup, editable settings, published configuration versions and an isolated Scenario Lab.** Meta Muse interprets language and selects validated replies. Python alone authorizes prices, capacity reservations and commitments. M4 adds a signature-verified Instagram inbox adapter and isolated replay; no live Instagram account, real payments, external notifications, authentication or cloud deployment is connected.
 
-Install Docker with Compose v2 and start its engine. From the repository root:
+## Final submission package
+
+[Copy-ready submission and owner checklist](docs/SUBMISSION.md) · [Exact recording script and manual UI checks](docs/DEMO.md) · [Final verified results](docs/FINAL_VERIFICATION.md). Feature freeze: no new Instagram functionality or performance changes. Full final-session browser acceptance is incomplete; see the verification record.
+
+## Run
+
+With Docker and Compose v2 running, from the repository root:
 
 ```sh
 cp -n .env.example .env
 ```
 
-Privately set a strong `POSTGRES_PASSWORD` and your existing Meta `MODEL_API_KEY` in `.env`. Do not paste credentials into chat or commit them. The app starts without a model key, but interpretation correctly returns an error rather than pretending to call Muse.
-
-```sh
-docker compose up --build
-```
-
-Open http://localhost:3000. API docs: http://localhost:8000/docs. To start in the background and wait for health checks:
+Privately set `POSTGRES_PASSWORD` and the existing Meta `MODEL_API_KEY` in `.env`. Never commit credentials. Without a model key the UI and manual settings still work; inference reports an error and does not invent a result.
 
 ```sh
 docker compose up --build -d --wait
 ```
 
-Startup waits for PostgreSQL health, runs **Alembic migrations and an idempotent fictional seed**, starts FastAPI, then starts Next.js. No manual table creation is required. Migration startup is guarded by a PostgreSQL advisory lock, including concurrent backend startups.
+Open **http://127.0.0.1:3000/overview**. Use `127.0.0.1` explicitly if an old native development service listens on IPv6 localhost. API docs: http://127.0.0.1:8000/docs.
 
-The first build downloads base images and pinned dependencies, so it requires registry access. Python dependencies are locked in `backend/requirements.lock`; npm uses its existing lockfile. Docker uses a pinned uv installer and a cached npm install with bounded download retries. Images run the app as non-root users. No `.env`, local database, Git directory, dependency cache or API key is copied into an image.
+Startup automatically applies Alembic migrations and idempotent fictional bakery seed data. Existing database configuration is never overwritten by startup. The PostgreSQL named volume survives normal restarts, rebuilds and `docker compose down`. Do not use `down -v` unless deliberately deleting the database. Keep independent backups.
 
-## What runs where
+Published ports bind to loopback by default. **Demo business switching is not tenant authentication.** Every database operation is scoped server-side, but any local caller can select a business. Do not expose this unauthenticated simulator publicly.
 
-| Component | Responsibility | Default access |
-|---|---|---|
-| Next.js container | Existing seller workspace and customer simulator; runtime API proxy | localhost:3000 |
-| FastAPI container | Unchanged Muse/policy/pricing/acceptance behavior; transactional storage | localhost:8000 |
-| PostgreSQL container | Durable conversations, messages, customers, state and audit records | Internal Compose network only |
-| Meta Model API | Real Muse interpretation and checked reply composition | Outbound HTTPS from backend |
+## Seller walkthrough
 
-Docker packages the application and its runtime dependencies. PostgreSQL is the database that stores the application’s records. On a laptop, these containers run in Docker’s local engine. On a server, the same compatible images run in that server’s container engine; Muse still runs at Meta, not on that server.
+1. Click **New business** in the navigation. It starts paused and unpublished.
+2. In **Business settings → Overview**, paste your business description or menu and click **Help me set up with Muse**.
+3. Muse proposes sourced draft edits. It asks about ambiguous extra-charge units and missing service areas. Nothing becomes an active commercial rule yet. Expand setup evidence to inspect its source quotes.
+4. Answer questions conversationally or edit **Products & Pricing**, **Customizations**, **Delivery & Availability**, **Payments & Policies**, **Agent Personality**, and **When to Notify Me**. Manual editing works without a model connection. Prices are whole INR amounts. For delivery, add explicit service-area keywords; the customer must provide an address containing an allowed area. This is a keyword check, not geocoding.
+5. Save the draft, resolve setup questions, and open **Review & Publish**. Review prices, units, hours, fees, lead time, capacity, deposit and safety rules; check the review box and explicitly publish. Resume automation when ready.
+6. Open **Conversations** and type as a synthetic customer. The agent reads the selected business's published configuration on every turn, with no server restart. Configuration edits remain draft until published.
+7. Open **Scenario Lab**, choose a scenario, and inspect expected versus persisted outcomes, messages, reviews, errors and per-call timing. Each run copies the published configuration into an isolated lab business. Reset removes lab records only.
 
-The frontend browser uses same-origin `/api/...` requests. Next.js forwards approved routes to **runtime** `API_INTERNAL_URL` (default `http://backend:8000` in Compose). The backend address and model key are never bundled into browser JavaScript. Changing the backend hostname does not require rebuilding the frontend image. A legacy `NEXT_PUBLIC_API_BASE_URL` build-time override remains supported for existing development setups, but is unnecessary for Docker.
+For Bloom & Co., enter the exact description in `backend/scripts/verify_bloom.py`. The original description leaves extra units, service area, hours, location and cancellation/safety policies incomplete. Supply those as seller decisions; for example, extras per bouquet, Indiranagar delivery, 24 hours' lead time, two orders/day, zero deposit and owner review for accepted changes. Do not silently fill those gaps.
 
-## Persistence and consistency
+Then request 12 red roses with ribbon and a greeting card, provide one bouquet, a future date and an Indiranagar address. The fixed breakdown is ₹699 + ₹50 + ₹30 + ₹80 = **₹859**. Accept with “Perfect, let's go ahead!” Publish ₹799 for the bouquet and request the same selection in a new conversation: **₹959**. The existing ₹859 commitment retains its original terms.
 
-SQLAlchemy 2 connects through psycopg 3 to PostgreSQL. There was no pre-existing SQLAlchemy layer; M1.2 used a single SQLite snapshot table. Alembic revision `0001_postgres` now creates:
+## Rules and persistence
 
-- `businesses`: business ID and validated catalogue/policies in JSONB. The existing bakery catalogue is seed data, inserted only if absent; restart never overwrites approved database configuration.
-- `customers`: the two explicitly fictional customer identities. Known simulator conversations link to them. Unknown conversation IDs have no invented customer identity.
-- `conversations`: business-scoped IDs, optional customer link, version, and the complete sourced JSONB state. Requested specifications, current quote, accepted commitment, frozen production snapshot, alerts, evidence and inference provenance round-trip unchanged.
-- `messages`: separately indexed incoming, outgoing and owner turns, with unique IDs and ordered positions within a conversation.
-- `events`: separately indexed, ordered audit records including evidence and historical snapshots.
+- `businesses`: business profile/current published configuration, active version and pause state.
+- `configuration_drafts`: validated editable configuration, optimistic revision, unresolved questions and sourced setup conversation.
+- `configuration_versions`: immutable application-published snapshots keyed by business and version. Migration preserves the original M2 configuration as version 1.
+- `conversations`, `messages`, `events`: business-owned sourced state and append-only history. Composite foreign keys and unique message IDs/positions prevent cross-business linkage and duplicate records.
+- `orders`: atomic business-owned projection of requested, accepted and production specifications. The simulator supports one order per conversation.
+- `instagram_accounts`, `instagram_inbox`, `instagram_outbox`, `instagram_replays`: account ownership, durable delivery/retry status, held replies and source-owned isolated replay mappings. Tokens remain runtime secrets; PostgreSQL stores references only.
+- `scenario_runs`: business-owned lab results referencing separate isolated lab businesses. A lab business cannot be selected through normal customer API routes.
 
-Messages/events and the state snapshot are saved in **one transaction**. Foreign keys prevent orphan records; composite primary keys and unique positions prevent duplicate deliveries and ordering collisions. Existing messages/events cannot be rewritten through the store. Direct stale writes return 409 rather than overwriting a newer state.
+Catalogues, fees and policies use validated JSONB inside relational ownership/version tables. Supported rules are typed values, not executable code. Draft proposals require exact seller source quotes; numeric rules require matching evidence. Unknown fields, unsupported approval-rule types and invalid charges are rejected. Seller review is mandatory before activation.
 
-A transaction locks the configured **business row** before loading a conversation, calling Muse, checking capacity and saving. This replaces the old in-process lock and protects shared capacity across independent backend processes. Duplicate requests wait, then return existing state without another model call or reply. The lock is deliberately coarse: all customer turns for one business are serialized, including the two model calls. This preserves prototype correctness rather than introducing queues or distributed orchestration.
+Fixed price = configured variant price × quantity + selected extras × quantity + fulfillment fee. Extras may explicitly be per item or per numeric size unit. Fractional-rupee results require review. No discounts or negotiation. Capacity can count items or orders; **acceptance reserves capacity, quotes do not**. A PostgreSQL business-row transaction lock serializes all writers for that business across processes, including rechecks before acceptance. Concurrent requests cannot reserve the last slot twice.
 
-All queries and locks are scoped by `ORDERGUARD_BUSINESS_ID`. This prepares configuration separation; it is **not** multi-tenant authentication. A deployment serves one configured business, and no client header can choose another business. Reset deletes only that business’s simulated conversations/messages/events, not its catalogue or other businesses.
+New quotes record a configuration version and snapshot. Publishing invalidates pending quotes before they can be accepted, even if only policy changed. Accepted commitments and frozen production plans retain their historical prices/specifications; legacy M2 records retain their actual historical terms without invented configuration provenance. Historical evidence remains auditable after catalogue changes.
 
-## Restarts, backups and existing SQLite data
+Payment assertions stay claimed/unverified. Acceptance never starts production. An explicit owner action starts simulated production. Late changes create a pending review and preserve that snapshot. Mandatory dietary, unsupported-request, accepted-change, dispute and exact-slot gates cannot be disabled. Sellers can additionally require approval for all orders. Other free-form escalation/cancellation guidance is displayed for the owner; it is not arbitrary executable policy.
 
-PostgreSQL data lives in the named `postgres_data` volume. Container restart, image rebuild, `docker compose down`, and normal container recreation preserve it. **Deleting the volume or using `docker compose down -v` deletes that database.** A volume is persistence, not a backup. Maintain separate PostgreSQL backups before important use or schema changes.
+Customer replies use approved fact-equivalent phrases; Muse cannot introduce unapproved claims. Writing failures use a validated deterministic fallback, labelled in seller audit details. Interpretation/setup failures save no inferred mutation. Normal automatic quotes and clarification create no owner alert.
 
-Existing SQLite files are never deleted or automatically mounted into images. To import the old synthetic workspace after stopping the old local backend:
+## Scenario Lab
+
+| Scenario | Persisted invariant |
+|---|---|
+| A — Changing requirements | Latest size/date/extras; obsolete quotes invalidated; final deterministic total accepted |
+| B — Final capacity slot | Two concurrent acceptance writers; exactly one reservation and one escalation |
+| C — Unauthorized request | No unauthorized commitment or overridden-price offer |
+| D — Payment claim | Claim recorded; never verified |
+| E — Late production change | Frozen production plan intact; one actionable owner review |
+| F — Conditional acceptance | Conditional/free-extra request cannot accept |
+| G — Duplicate / out-of-order delivery | One incoming turn; duplicate unchanged; stale input rejected |
+| H — Catalogue changes mid-order | Old accepted terms preserved; new quote uses the published price |
+
+Runtime runs use genuine Muse; errors remain errors. There is no canned model substitute. Mock providers exist only in automated tests and produce `mock` provenance. Scenario A requires two sizes plus eggless/floral options; use the demo bakery for that bakery-specific case. B visibly overrides the isolated copy to one daily slot. Other configured policies still apply and may cause an honest failure. Repeatable resets do not touch seller orders or published rules. Step tokens prevent duplicate step retries from advancing a run twice.
+
+## Verify
+
+Create a separate disposable test database once if needed:
 
 ```sh
-docker compose cp backend/data/demo.sqlite3 backend:/tmp/orderguard-legacy.sqlite3
-docker compose exec -T backend python -m app.import_sqlite /tmp/orderguard-legacy.sqlite3
+docker compose exec -T db createdb -U orderguard orderguard_test
 ```
 
-The importer opens SQLite read-only, validates all snapshots and imports the entire batch in a PostgreSQL transaction. It preserves names where known, IDs, source ordering/timestamps, messages, requested/quoted/accepted/production states, legacy commercial terms, events and evidence. Matching destination records are skipped on repeated import. Any conflicting destination snapshot aborts the entire batch; nothing is silently overwritten. Keep the original file as a rollback reference. Do not run SQLite and PostgreSQL app instances as concurrent writers during migration.
+```sh
+docker compose exec -T -e TEST_DATABASE_URL=postgresql+psycopg:///orderguard_test backend python -m pytest -q -p no:cacheprovider
+```
 
-## Configuration and server portability
+```sh
+cd frontend
+npm run lint
+npm run test:catalogue
+npm run build -- --webpack
+```
 
-Root `.env` is for Compose interpolation; credentials are passed only at container runtime. Changing it requires recreating the affected container (`docker compose up -d`), not rebuilding an image. Never run `docker compose config` without `--quiet` when sharing logs: the expanded configuration contains runtime secrets.
+Opt-in actual Muse checks, using the private runtime key:
 
-- `POSTGRES_PASSWORD`: required for the Compose database. Changing it in `.env` does not rotate the password already stored inside an existing database volume; use an explicit database credential-rotation procedure instead.
-- `MODEL_API_KEY`: backend-only Meta credential; no replacement provider or fake inference.
-- `ORDERGUARD_BUSINESS_ID`: defaults to `little-crumb-v1`; scopes catalogue/state/customer records and locks. The fictional seed is cloned only for an absent configured business.
-- `DATABASE_URL`: optional full SQLAlchemy PostgreSQL URL for an external database. By default Compose uses libpq’s `PGHOST`/`PGUSER`/`PGDATABASE`/`PGPASSWORD` runtime variables, avoiding password interpolation into a URL. Full external URLs can include PostgreSQL SSL options.
-- `API_INTERNAL_URL`: runtime frontend upstream; defaults to `http://backend:8000`.
-- `BIND_HOST`, `FRONTEND_PORT`, `BACKEND_PORT`: default to `127.0.0.1`, `3000`, `8000`. Alternate ports can be supplied when existing local services occupy these ports.
-- `CORS_ORIGINS`: needed only for direct browser-to-backend use; the normal same-origin proxy avoids cross-origin configuration.
+```sh
+docker compose exec -T backend python scripts/smoke_meta.py --live
+docker compose exec -T backend python scripts/verify_bloom.py --live
+docker compose exec -T backend python scripts/verify_lab.py --live
+```
 
-The same images can run locally or on a server with suitable environment, storage and network configuration. Build/publish for the server’s CPU architecture; this session verifies the local ARM64 images, not an AMD64 or multi-architecture registry release. No server was provisioned or publicly deployed. Published ports bind to loopback by default because this simulator has no authentication. Put it behind appropriate private access/TLS controls before deliberate server exposure; M2 does not implement those controls.
+`verify_bloom.py` creates a new synthetic florist, performs real sourced onboarding, explicit seller corrections/publishing, HTTP conversations, direct PostgreSQL verification, ₹859/₹959 price versioning, isolation and a real concurrent Lab B run. Its outage test is explicitly injected through FastAPI, followed by a real Muse retry. `--business <id>` continues an already published ₹699 florist. These tests leave inspectable synthetic records; use separate test businesses for repeated price-change runs. `verify_lab.py` supports A–H through the runtime frontend proxy; its default is A–F. Run G/H explicitly against a fully configured business. JSON evidence is saved under `/tmp` in the backend container; copy it out with `docker compose cp` if needed.
 
-## Develop without application containers
+Timing: seller audit stores interpretation and reply-request durations and SQL execution timing through the decision. HTTP `Server-Timing` includes all measured SQL statements for the request, including saves/lock waits, but excludes network connection setup and commit overhead. The acceptance script measures complete client-observed HTTP duration and reports medians/maxima. Mock tests do not establish live performance.
 
-Use an existing PostgreSQL database and a server-only `backend/.env` based on its example:
+See [M3_REPORT.md](M3_REPORT.md) for actual verification results, UI boundaries, failures and measured latency. Never infer success from the presence of a test script.
+
+## Native development and portability
+
+PostgreSQL is required; tests never substitute SQLite. With a private `backend/.env` based on its example:
 
 ```sh
 cd backend
@@ -101,62 +129,35 @@ cp -n .env.example .env.local
 npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-The frontend proxy defaults to `http://127.0.0.1:8000` in native development. Backend `.env` loading remains an absolute path; fully restart after editing credentials. `ORDERGUARD_DB` is no longer a runtime store setting. Migration changes use `backend/alembic/versions`; direct Alembic commands run from `backend/` with the configured PostgreSQL URL. Application behavior remains in the existing engine/provider/reply modules.
+Next.js forwards same-origin `/api` requests to runtime `API_INTERNAL_URL`; credentials never reach browser code. Docker images exclude `.env`, local SQLite files and caches. `DATABASE_URL` can target external PostgreSQL; the default Compose setup uses libpq runtime environment values. Set `ORDERGUARD_BUSINESS_ID` for the default workspace. `BIND_HOST`, `FRONTEND_PORT` and `BACKEND_PORT` control deliberate local bindings. Never share expanded `docker compose config` output because it contains secrets.
 
-## Verify
-
-Create a separate test database once:
+Existing SQLite files remain untouched. To explicitly import old synthetic records, copy the file into the backend and run the read-only atomic importer:
 
 ```sh
-docker compose exec -T db createdb -U orderguard orderguard_test
+docker compose cp backend/data/demo.sqlite3 backend:/tmp/orderguard-legacy.sqlite3
+docker compose exec -T backend python -m app.import_sqlite /tmp/orderguard-legacy.sqlite3
 ```
 
-Run all backend tests against real PostgreSQL (the test fixture uses temporary business IDs and cleans up only those records):
+Matching records are skipped, conflicts abort the complete batch. Never run concurrent SQLite/PostgreSQL writers during an import. M2's startup, persistence, idempotency, rollback, concurrent writer and importer regressions remain in the backend suite.
+
+## Boundaries
+
+English replies, INR pricing and India-time date interpretation only. Hours are descriptive; exact slots always need human review. Service areas use explicit address keywords, not a real logistics connection. No real inventory/calendar or payment verification. One order per conversation. Custom automatic conditions beyond the supported typed rules and owner resolution of pending reviews are not implemented. Coarse business locks include model latency, so slow Muse calls serialize that business's turns. This is a local prototype, not authenticated multi-tenant hosting.
+
+## Instagram adapter and demo package
+
+Open `/channels` for honest status and signed synthetic replay. The webhook enqueues without calling Muse; the explicit inbox worker invokes the existing agent and stores a held reply. No runtime route automatically sends messages. Compose hard-disables outbound transport. OAuth, professional-account permissions, live webhook reception and remote revocation remain unverified/incomplete.
+
+See [Instagram setup and boundary](docs/INSTAGRAM.md), [architecture](docs/ARCHITECTURE.md), [demo script](docs/DEMO.md), [progress log](PROGRESS.md) and [verification report](M3_REPORT.md).
 
 ```sh
-docker compose exec -T -e TEST_DATABASE_URL=postgresql+psycopg:///orderguard_test backend python -m pytest -q -p no:cacheprovider
+docker compose exec -T backend python scripts/verify_instagram_replay.py --live --business YOUR_BLOOM_ID
+docker compose exec -T backend python scripts/verify_lab.py --live --business YOUR_BLOOM_ID --scenarios GH
+docker compose exec -T backend python scripts/compare_reasoning.py --live
 ```
 
-Native tests require `TEST_DATABASE_URL` explicitly. They fail rather than silently substituting SQLite. Do not point tests at a production database. No existing M1.2 regression was removed; storage fixtures now use PostgreSQL and catalogue-change tests target the same store configuration used by runtime requests.
+The first command uses real Muse with **synthetic Instagram transport**, not a live Instagram connection. Outbound tests use mocked HTTP. The reasoning experiment is an opt-in comparison; defaults remain unchanged. Empty `MUSE_*_REASONING_EFFORT` settings preserve the working model default. Do not use unsupported `none`; see [Meta's reasoning documentation](https://dev.meta.ai/docs/reasoning).
 
-```sh
-cd frontend
-npm run lint
-npm run build -- --webpack
-```
+Plain UTF-8 `.txt` menus up to 8 KB/8,000 characters are validated before being loaded into setup. Empty, oversized, binary, invalid UTF-8 and unsupported file formats are rejected. Uploading text never publishes it automatically.
 
-Docker builds use the same webpack command. Default Turbopack was previously blocked by an internal-port sandbox restriction; no UI redesign or frontend dependency upgrade was introduced.
-
-Opt-in real Muse checks:
-
-```sh
-docker compose exec -T backend python scripts/smoke_meta.py --live
-docker compose exec -T backend python scripts/verify_live_flow.py --live
-docker compose exec -T backend python scripts/verify_portable.py --live
-```
-
-Smoke makes two real calls (interpretation and reply composition). Full flow exercises the existing M1.2 sequence, compares HTTP state to PostgreSQL, checks duplicate handling and frozen production. These checks require the private key/access/quota and leave synthetic audit records. Normal model writing failures use the existing validated fallback; interpretation failures save no turn and can be retried with the same ID.
-
-M2 verification completed locally on November 5, 2026:
-
-- **87 backend tests passed in the final Python 3.12 container against actual PostgreSQL 16**, including all 77 M1.2 regressions. One upstream Starlette/AnyIO deprecation warning remains. New checks cover clean Alembic initialization, idempotent seed, state/message/event round-trips, conversation/business isolation, unique message IDs, stale writes, append-only history, rollback, concurrent duplicate calls, competing capacity reservations and atomic/idempotent SQLite import.
-- **Frontend lint passed natively; webpack builds passed both natively and inside the image build.**
-- **Compose startup passed** on ports 3000/8000, with all three services healthy. Database schema and seed were created automatically on the initially empty named volume. The first build attempts hit registry/network failures; the final uv/locked Python and cached, bounded npm builds succeeded.
-- **All seven legacy SQLite conversations imported and matched HTTP responses through the Next.js proxy**, including accepted commitments, production snapshots, messages, events and evidence. Repeated import added zero records. Original SQLite SHA-256 remained `76a91b03fc9fc6812e63e5d21027a020ae39d4383034bf7fd3578ccde6591308`.
-- **Real Muse smoke passed inside Docker** for both interpretation (`source=meta`) and checked reply composition (`reply_source=meta`). The existing private key was passed at runtime and never printed or committed.
-- **Actual portable HTTP workflow passed** through `http://frontend:3000` → FastAPI → Muse → PostgreSQL in conversation `m2-live-05afb4567e`: ₹900 quote → eggless/floral ₹1300 → natural “I confirm” acceptance → unchanged duplicate → explicit owner production snapshot. Every response matched PostgreSQL; all actual model turns and replies reported Meta provenance. No payment was verified or production automatically scheduled.
-- **All containers, including PostgreSQL, were force-recreated against the same volume**. All eight conversation states matched the canonical pre-recreation snapshot exactly; the live ₹1300 accepted/production plan survived. Health checks passed again, and the final PostgreSQL test suite remained green.
-
-Not verified: public/cloud deployment, other CPU architectures, a multi-architecture registry release, operational backup restoration, failover or production security. No server was provisioned or exposed publicly. Mock-provider tests validate rules, not real inference; actual PostgreSQL tests validate database behavior, not a production deployment.
-
-## Unchanged agent behavior and remaining limits
-
-Fixed pricing: configured size price × quantity + selected per-cake extras × quantity + applicable fulfillment fee. No discounts or counteroffers. Muse interprets intent; the backend alone authorizes prices/actions. Muse composes from approved phrase variants; complete output validation rejects unapproved claims and uses a checked deterministic fallback on writing failure.
-
-Natural acceptance must bind to the exact current valid quote, with no simultaneous changes or conditions. Acceptance never verifies payment or starts production. Accepted/production changes, dietary uncertainty and unsupported requests require review. IDs/evidence stay under the existing seller audit details. The static M0 `/fixtures` route remains visibly seeded and unchanged.
-
-Still simulated: customers, business catalogue, capacity and owner production actions. Still absent: real calendar/inventory, verified payments, Instagram, onboarding, authentication, media extraction and owner review resolution. One order per conversation; pending reviews require reset. Two serial Muse calls plus the coarse business lock limit throughput. Broader model semantics, public access/security, operational backups, cloud hosting, failover and server/architecture-specific deployment remain outside this verification.
-
-Relevant implementation: `backend/app/database.py`, `store.py`, `bootstrap.py`, `import_sqlite.py`, Alembic, transaction wiring in `main.py`/`engine.py`, PostgreSQL tests, both Dockerfiles, `compose.yaml`, `.dockerignore`, frontend runtime proxy and standalone configuration. Muse provider/reply logic, fixed prices, acceptance decisions and UI styles are unchanged.
-
-M2 stops here. The next recommended milestone is the separately requested M3 scope; no M3/M4 work has begun.
+Work stops after this M3/M4 adapter and demo preparation. No public deployment or submission was performed.

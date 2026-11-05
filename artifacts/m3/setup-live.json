@@ -1,0 +1,335 @@
+[
+  {
+    "business_id": "shop-a9ca3df1664c4587b8c0c60a8ef43537",
+    "revision": 2,
+    "config": {
+      "id": "shop-a9ca3df1664c4587b8c0c60a8ef43537",
+      "name": "Bloom & Co.",
+      "tone": "friendly and casual",
+      "addons": {},
+      "policy": {
+        "hours": "",
+        "dietary": "",
+        "pricing": "fixed",
+        "lead_days": 0,
+        "escalation": "",
+        "lead_hours": 24,
+        "availability": "Local capacity ledger; no inventory connection.",
+        "cancellation": "",
+        "closed_dates": [],
+        "capacity_unit": "orders",
+        "daily_capacity": 2,
+        "deposit_percent": 0,
+        "automatable_actions": [
+          "clarify",
+          "quote",
+          "accept_current_quote",
+          "cancel_unaccepted_draft"
+        ]
+      },
+      "category": "",
+      "currency": "INR",
+      "language": "English",
+      "location": "",
+      "products": {
+        "red_roses": {
+          "name": "bouquet of 12 red roses",
+          "unit": "bouquet",
+          "sizes": {
+            "12": 699
+          }
+        },
+        "mixed_bouquet": {
+          "name": "mixed flower bouquet",
+          "unit": "bouquet",
+          "sizes": {
+            "1": 499
+          }
+        }
+      },
+      "extra_units": {},
+      "fulfillment": {
+        "pickup": 0
+      },
+      "approval_rules": [],
+      "customizations": {},
+      "delivery_zones": {},
+      "commercial_reviewed": false
+    },
+    "questions": [
+      "Which specific areas or neighborhoods are included in your delivery service area for the ₹80 delivery?",
+      "Is the ₹50 gift wrapping with ribbon charged per bouquet?",
+      "Is the ₹30 handwritten greeting card charged per bouquet?"
+    ],
+    "history": [
+      {
+        "text": "Hey! I run Bloom & Co., a small flower shop.\nWe sell a bouquet of 12 red roses for ₹699 and\na mixed flower bouquet for ₹499.\n\nGift wrapping with a ribbon costs ₹50 extra.\nA handwritten greeting card costs ₹30 extra.\n\nPickup is free.\nDelivery costs ₹80 in our service area.\nWe require at least 24 hours' notice.\nWe can fulfill only 2 orders per day.\n\nOur prices are fixed and we don't offer discounts.\nPlease keep replies friendly and casual.",
+        "speaker": "seller"
+      },
+      {
+        "text": "Which specific areas or neighborhoods are included in your delivery service area for the ₹80 delivery? Is the ₹50 gift wrapping with ribbon charged per bouquet? Is the ₹30 handwritten greeting card charged per bouquet?",
+        "edits": [
+          {
+            "path": "name",
+            "quote": "Bloom & Co.",
+            "value": "Bloom & Co."
+          },
+          {
+            "path": "tone",
+            "quote": "Please keep replies friendly and casual.",
+            "value": "friendly and casual"
+          },
+          {
+            "path": "products.red_roses.name",
+            "quote": "a bouquet of 12 red roses for ₹699",
+            "value": "bouquet of 12 red roses"
+          },
+          {
+            "path": "products.red_roses.sizes.12",
+            "quote": "a bouquet of 12 red roses for ₹699",
+            "value": "699"
+          },
+          {
+            "path": "products.red_roses.unit",
+            "quote": "a bouquet of 12 red roses for ₹699",
+            "value": "bouquet"
+          },
+          {
+            "path": "products.mixed_bouquet.name",
+            "quote": "a mixed flower bouquet for ₹499.",
+            "value": "mixed flower bouquet"
+          },
+          {
+            "path": "products.mixed_bouquet.sizes.1",
+            "quote": "a mixed flower bouquet for ₹499.",
+            "value": "499"
+          },
+          {
+            "path": "products.mixed_bouquet.unit",
+            "quote": "a mixed flower bouquet for ₹499.",
+            "value": "bouquet"
+          },
+          {
+            "path": "fulfillment.pickup",
+            "quote": "Pickup is free.",
+            "value": "0"
+          },
+          {
+            "path": "policy.lead_hours",
+            "quote": "We require at least 24 hours' notice.",
+            "value": "24"
+          },
+          {
+            "path": "policy.daily_capacity",
+            "quote": "We can fulfill only 2 orders per day.",
+            "value": "2"
+          },
+          {
+            "path": "policy.capacity_unit",
+            "quote": "We can fulfill only 2 orders per day.",
+            "value": "orders"
+          }
+        ],
+        "source": "meta",
+        "speaker": "assistant"
+      }
+    ]
+  },
+  {
+    "business_id": "shop-bb147585b244422e9c3de275eb4a528e",
+    "revision": 5,
+    "config": {
+      "id": "shop-bb147585b244422e9c3de275eb4a528e",
+      "name": "Bloom & Co.",
+      "tone": "Friendly and casual",
+      "addons": {
+        "ribbon_wrapping": 50,
+        "handwritten_greeting_card": 30
+      },
+      "policy": {
+        "hours": "10 AM to 6 PM IST",
+        "dietary": "Any safety or dietary issue needs owner review.",
+        "pricing": "fixed",
+        "lead_days": 0,
+        "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+        "lead_hours": 24,
+        "availability": "Local capacity ledger; no inventory connection.",
+        "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+        "closed_dates": [],
+        "capacity_unit": "orders",
+        "daily_capacity": 2,
+        "deposit_percent": 0,
+        "automatable_actions": [
+          "clarify",
+          "quote",
+          "accept_current_quote",
+          "cancel_unaccepted_draft"
+        ]
+      },
+      "category": "flower shop",
+      "currency": "INR",
+      "language": "English",
+      "location": "Bengaluru, India",
+      "products": {
+        "red_roses": {
+          "name": "bouquet of 12 red roses",
+          "unit": "bouquet",
+          "sizes": {
+            "12": 799
+          }
+        },
+        "mixed_bouquet": {
+          "name": "mixed flower bouquet",
+          "unit": "bouquet",
+          "sizes": {
+            "standard": 499
+          }
+        }
+      },
+      "extra_units": {},
+      "fulfillment": {
+        "pickup": 0,
+        "indiranagar": 80
+      },
+      "approval_rules": [
+        "accepted_change",
+        "dietary",
+        "exact_slot",
+        "refund_dispute",
+        "unsupported_request"
+      ],
+      "customizations": {},
+      "delivery_zones": {
+        "indiranagar": [
+          "Indiranagar"
+        ]
+      },
+      "commercial_reviewed": true
+    },
+    "questions": [],
+    "history": [
+      {
+        "text": "Hey! I run Bloom & Co., a small flower shop.\nWe sell a bouquet of 12 red roses for ₹699 and\na mixed flower bouquet for ₹499.\n\nGift wrapping with a ribbon costs ₹50 extra.\nA handwritten greeting card costs ₹30 extra.\n\nPickup is free.\nDelivery costs ₹80 in our service area.\nWe require at least 24 hours' notice.\nWe can fulfill only 2 orders per day.\n\nOur prices are fixed and we don't offer discounts.\nPlease keep replies friendly and casual.",
+        "speaker": "seller"
+      },
+      {
+        "text": "Is the ₹50 gift wrapping with ribbon charged per bouquet? Is the ₹30 handwritten greeting card charged per bouquet? Which areas or pincodes do you cover for delivery with the ₹80 charge? What are your shop opening hours?",
+        "edits": [
+          {
+            "path": "name",
+            "quote": "I run Bloom & Co.,",
+            "value": "Bloom & Co."
+          },
+          {
+            "path": "category",
+            "quote": "a small flower shop.",
+            "value": "flower shop"
+          },
+          {
+            "path": "products.red_roses.name",
+            "quote": "bouquet of 12 red roses for ₹699",
+            "value": "bouquet of 12 red roses"
+          },
+          {
+            "path": "products.red_roses.sizes.12",
+            "quote": "bouquet of 12 red roses for ₹699",
+            "value": "699"
+          },
+          {
+            "path": "products.red_roses.unit",
+            "quote": "bouquet of 12 red roses for ₹699",
+            "value": "bouquet"
+          },
+          {
+            "path": "products.mixed_bouquet.name",
+            "quote": "mixed flower bouquet for ₹499",
+            "value": "mixed flower bouquet"
+          },
+          {
+            "path": "products.mixed_bouquet.sizes.standard",
+            "quote": "mixed flower bouquet for ₹499",
+            "value": "499"
+          },
+          {
+            "path": "products.mixed_bouquet.unit",
+            "quote": "mixed flower bouquet for ₹499",
+            "value": "bouquet"
+          },
+          {
+            "path": "policy.lead_hours",
+            "quote": "We require at least 24 hours' notice.",
+            "value": "24"
+          },
+          {
+            "path": "policy.daily_capacity",
+            "quote": "We can fulfill only 2 orders per day.",
+            "value": "2"
+          },
+          {
+            "path": "policy.capacity_unit",
+            "quote": "We can fulfill only 2 orders per day.",
+            "value": "orders"
+          },
+          {
+            "path": "fulfillment.pickup",
+            "quote": "Pickup is free.",
+            "value": "0"
+          },
+          {
+            "path": "tone",
+            "quote": "Please keep replies friendly and casual.",
+            "value": "Friendly and casual"
+          }
+        ],
+        "source": "meta",
+        "speaker": "assistant"
+      },
+      {
+        "text": "We are in Bengaluru, India. Both extras are per bouquet: ribbon wrapping is ₹50 per item and the handwritten greeting card is ₹30 per item. Pickup is free, with no charge. Delivery is ₹80 per order to Indiranagar only. We are open 10 AM to 6 PM IST, with no holidays currently planned. Minimum preparation time is 24 hours. Capacity is 2 orders per day. No deposit is required, 0 percent. Changes and cancellations after acceptance need owner approval; no automatic refunds. Any safety/dietary issue, unsupported request, exact delivery slot or accepted change needs owner review. Please use friendly casual English.",
+        "speaker": "seller"
+      },
+      {
+        "text": "Could you share your exact pickup address in Bengaluru to share with customers? Are you open 10 AM to 6 PM every day, or do you have a weekly day off? For the Rs.80 delivery to Indiranagar, which pincodes are included, and do you deliver to any other areas?",
+        "edits": [
+          {
+            "path": "location",
+            "quote": "We are in Bengaluru, India.",
+            "value": "Bengaluru, India"
+          },
+          {
+            "path": "addons.ribbon_wrapping",
+            "quote": "ribbon wrapping is ₹50 per item",
+            "value": "50"
+          },
+          {
+            "path": "addons.handwritten_greeting_card",
+            "quote": "handwritten greeting card is ₹30 per item",
+            "value": "30"
+          },
+          {
+            "path": "fulfillment.indiranagar",
+            "quote": "Delivery is ₹80 per order to Indiranagar only.",
+            "value": "80"
+          },
+          {
+            "path": "delivery_zones.indiranagar",
+            "quote": "Delivery is ₹80 per order to Indiranagar only.",
+            "value": "Indiranagar"
+          },
+          {
+            "path": "policy.hours",
+            "quote": "We are open 10 AM to 6 PM IST,",
+            "value": "10 AM to 6 PM IST"
+          },
+          {
+            "path": "approval_rules",
+            "quote": "Changes and cancellations after acceptance need owner approval; no automatic refunds. Any safety/dietary issue, unsupported request, exact delivery slot or accepted change needs owner review.",
+            "value": "accepted_change, dietary, exact_slot, refund_dispute, unsupported_request"
+          }
+        ],
+        "source": "meta",
+        "speaker": "assistant"
+      }
+    ]
+  }
+]

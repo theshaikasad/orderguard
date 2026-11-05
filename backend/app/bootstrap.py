@@ -3,9 +3,9 @@ from pathlib import Path
 from alembic import command
 from alembic.config import Config
 from dotenv import load_dotenv
-from sqlalchemy import text
+from sqlalchemy import text, select
 from sqlalchemy.dialects.postgresql import insert
-from .database import get_engine, business_id, businesses, customers
+from .database import get_engine, business_id, businesses, customers, configuration_versions
 from .agent_models import Business
 
 BACKEND = Path(__file__).resolve().parents[1]
@@ -27,8 +27,12 @@ def seed(engine=None, business=None):
     bid = business or business_id()
     config = Business.model_validate_json((BACKEND.parent / 'fixtures' / 'business.json').read_text()).model_dump(mode='json')
     config['id'] = bid
+    config.update(category='Bakery', location='Bengaluru, India', commercial_reviewed=True)
     with engine.begin() as conn:
         conn.execute(insert(businesses).values(id=bid, config=config).on_conflict_do_nothing())
+        existing = conn.execute(select(businesses.c.config, businesses.c.active_version).where(businesses.c.id == bid)).one()
+        if existing.active_version:
+            conn.execute(insert(configuration_versions).values(business_id=bid, version=existing.active_version, config=existing.config).on_conflict_do_nothing())
         conn.execute(insert(customers).values([
             {'business_id': bid, 'id': 'ananya-synthetic', 'name': 'Ananya Rao'},
             {'business_id': bid, 'id': 'kabir-synthetic', 'name': 'Kabir Shah'},

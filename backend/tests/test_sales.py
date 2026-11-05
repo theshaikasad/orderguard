@@ -261,3 +261,19 @@ def test_agreement_to_remove_optional_extra_requotes_before_acceptance(store):
     assert s.offered_terms.spec['customizations'].value == 'eggless'
     s = turn(store, 5, MockProvider(intents=['accept']), 'I confirm')
     assert s.accepted_commitment.terms.total == 1050
+
+
+def test_opt_in_low_reasoning_is_explicit_and_validated(monkeypatch):
+    monkeypatch.setenv('MODEL_API_KEY','test-not-a-key')
+    monkeypatch.setenv('MUSE_REPLY_REASONING_EFFORT','low')
+    actual_client=httpx.Client
+    captured=[]
+    def handle(request):
+        captured.append(json.loads(request.content))
+        return httpx.Response(200,json={'choices':[{'message':{'content':'{"paragraphs":["Hello"]}'}}]})
+    monkeypatch.setattr(httpx,'Client',lambda **kw:actual_client(transport=httpx.MockTransport(handle),**kw))
+    provider=MetaProvider()
+    assert provider.generate_reply({'approved_paragraphs':[['Hello']]})==['Hello']
+    assert captured[0]['reasoning_effort']=='low' and provider.metrics[0]['reasoning_effort']=='low'
+    monkeypatch.setenv('MUSE_REPLY_REASONING_EFFORT','none')
+    with pytest.raises(ModelError):provider.generate_reply({'approved_paragraphs':[['Hello']]})

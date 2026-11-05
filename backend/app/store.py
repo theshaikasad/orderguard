@@ -5,7 +5,7 @@ from sqlalchemy import select, insert, update, delete
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from .agent_models import State, Business
-from .database import get_engine, business_id, businesses, conversations, messages, events
+from .database import get_engine, business_id, businesses, conversations, messages, events, customers, orders, configuration_versions
 
 CUSTOMER_FOR_CONVERSATION = {
     'sales-demo': 'ananya-synthetic', 'sales-m12': 'ananya-synthetic',
@@ -62,6 +62,15 @@ class Store:
             config = session.execute(select(businesses.c.config).where(businesses.c.id == self.business_id)).scalar_one()
             return Business.model_validate_json(json.dumps(config)).model_dump()
 
+    def historical_catalogues(self):
+        with self._read() as session:
+            return session.execute(select(configuration_versions.c.config).where(configuration_versions.c.business_id == self.business_id)).scalars().all()
+
+    def runtime(self):
+        with self._read() as session:
+            row = session.execute(select(businesses.c.active_version, businesses.c.paused).where(businesses.c.id == self.business_id)).one()
+            return row.active_version, row.paused
+
     def get(self, cid):
         with self._read() as session:
             row = session.execute(select(conversations.c.state, conversations.c.version).where(
@@ -84,7 +93,7 @@ class Store:
             if (row['version'] if row else 0) != expected:
                 raise HTTPException(409, 'Conversation changed. Reload before retrying.')
             data = state.model_dump(mode='json')
-            old = row['state'] if row else {'turns': [], 'events': []}
+            old = State.model_validate_json(json.dumps(row['state'])).model_dump(mode='json') if row else {'turns': [], 'events': []}
             for key in ('turns', 'events'):
                 if data[key][:len(old[key])] != old[key]:
                     raise HTTPException(409, 'Existing messages and audit events cannot be rewritten.')
@@ -94,7 +103,15 @@ class Store:
                     conversations.c.id == state.id).values(**values))
             else:
                 session.execute(insert(conversations).values(business_id=self.business_id, id=state.id,
-                    customer_id=CUSTOMER_FOR_CONVERSATION.get(state.id), **values))
+                    customer_id=(session.execute(select(customers.c.id).where(self._scope(customers), customers.c.id == CUSTOMER_FOR_CONVERSATION.get(state.id))).scalar_one_or_none()), **values))
+            # One order per conversation remains the explicit simulator limit.
+            from sqlalchemy.dialects.postgresql import insert as pg_insert
+            session.execute(pg_insert(orders).values(business_id=self.business_id, conversation_id=state.id,
+                requested_spec=data['requested_spec'], accepted_commitment=data['accepted_commitment'],
+                production_snapshot=data['production_snapshot']).on_conflict_do_update(
+                    index_elements=['business_id','conversation_id'], set_={
+                        'requested_spec':data['requested_spec'], 'accepted_commitment':data['accepted_commitment'],
+                        'production_snapshot':data['production_snapshot']}))
             for table, key in ((messages, 'turns'), (events, 'events')):
                 additions = []
                 for pos, item in enumerate(data[key][len(old[key]):], start=len(old[key])):

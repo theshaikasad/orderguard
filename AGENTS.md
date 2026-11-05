@@ -183,3 +183,21 @@ This dated direction supersedes conflicting product positioning above while pres
 - Verify original regressions against PostgreSQL plus initialization, restart persistence, isolation, constraints, accepted/production preservation, rollback and concurrent writers. Distinguish actual PostgreSQL, HTTP, Docker and live Muse checks from unverified capabilities.
 - The local simulator has no authentication. Bind published ports to loopback by default; server access requires deliberate environment/network configuration. Do not expose an unauthenticated demo publicly as part of M2.
 - Stop after M2. M3/M4, onboarding, Instagram, production payments and cloud deployment are not authorized in this milestone. Next scope requires a new user request.
+
+## 12. M3 — Conversational seller onboarding and Scenario Lab (authorized)
+
+- Current scope: seller configuration drafts, explicit reviewed publishing, PostgreSQL configuration versions, manual settings, pause control, business-scoped agent behavior and isolated synthetic Scenario Lab.
+- Muse proposes sourced draft edits; deterministic validated rules authorize prices, acceptance and capacity. Ambiguous commercial units require clarification. No discounts or negotiation.
+- Accepted quotes retain their configuration snapshot/version; settings changes never rewrite accepted commitments or production instructions.
+- Scenario checks use persisted state. Runtime scenarios use real Muse or report errors; mocked providers are test-only and visibly marked.
+- No Instagram, real payments, external notifications, authentication or cloud deployment. Local business selection is not an authorization boundary. Ports remain loopback-bound.
+- Stop after M3. M4 needs a new request.
+
+## 13. M3 completion + M4 adapter (latest user authorization)
+
+- The owner has authorized autonomous completion of M3, an Instagram adapter as far as access permits, and local demo materials. This supersedes the earlier stop-at-M3 boundary.
+- Preserve fixed pricing, evidence, versioned accepted terms, production snapshots, idempotency and transactional capacity. Finish regressions before expanding scope.
+- Implement only verified official Meta Instagram endpoints/permissions. Keep tokens server-side, verify webhook signatures, scope accounts by business, and distinguish signed synthetic replay from live channel traffic.
+- No real customer sends, public deployment, remote pushes, hackathon submission, payments or irreversible external actions are authorized. Outbound transport remains disabled by default and cannot be activated merely by a customer message or replay.
+- The owner is unavailable: document blockers and proceed with independent work. Browser-extension verification remains unverified while its access host is unavailable.
+- Stop after M4 implementation and demo preparation; no unrelated future work.

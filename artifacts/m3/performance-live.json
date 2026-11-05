@@ -1,0 +1,107 @@
+{
+  "turns": [
+    {
+      "conversation_id": "timing-194737-inquiry",
+      "message_id": "hello",
+      "http_status": 200,
+      "end_to_end_ms": 21585,
+      "database_header": "db;dur=16.06",
+      "database_statements": "12",
+      "source": "meta",
+      "metrics": {
+        "interpretation_and_reply": [
+          {
+            "purpose": "Interpretation",
+            "latency_ms": 12378,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "latency_ms": 9073,
+            "status": "ok"
+          }
+        ],
+        "database_execute_ms": 6.81,
+        "database_statements": 6,
+        "processing_before_save_ms": 21477
+      },
+      "error": null
+    },
+    {
+      "conversation_id": "timing-194737-quote",
+      "message_id": "request",
+      "http_status": 200,
+      "end_to_end_ms": 24707,
+      "database_header": "db;dur=16.89",
+      "database_statements": "13",
+      "source": "meta",
+      "metrics": {
+        "interpretation_and_reply": [
+          {
+            "purpose": "Interpretation",
+            "latency_ms": 16043,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "latency_ms": 8591,
+            "status": "ok"
+          }
+        ],
+        "database_execute_ms": 5.85,
+        "database_statements": 7,
+        "processing_before_save_ms": 24653
+      },
+      "error": null
+    },
+    {
+      "conversation_id": "timing-194737-quote",
+      "message_id": "repeat",
+      "http_status": 200,
+      "end_to_end_ms": 18318,
+      "database_header": "db;dur=13.91",
+      "database_statements": "12",
+      "source": "meta",
+      "metrics": {
+        "interpretation_and_reply": [
+          {
+            "purpose": "Interpretation",
+            "latency_ms": 7423,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "latency_ms": 10801,
+            "status": "ok"
+          }
+        ],
+        "database_execute_ms": 8.94,
+        "database_statements": 7,
+        "processing_before_save_ms": 18254
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "Interpretation": {
+      "median_ms": 12378,
+      "slowest_ms": 16043,
+      "samples": 3
+    },
+    "CustomerReply": {
+      "median_ms": 9073,
+      "slowest_ms": 10801,
+      "samples": 3
+    },
+    "database_sql": {
+      "median_ms": 16.06,
+      "slowest_ms": 16.89,
+      "samples": 3
+    },
+    "customer_http": {
+      "median_ms": 21585,
+      "slowest_ms": 24707,
+      "samples": 3
+    }
+  }
+}

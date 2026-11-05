@@ -1,7 +1,9 @@
 export type Value = { value: string; evidence: string[] };
-export type Offer = { id: string; spec: Record<string, Value>; subtotal: number; total: number; deposit: number; evidence: string[]; message_id: string };
+export type Offer = { configuration_version?: number | null; configuration_snapshot?: Business | null; id: string; spec: Record<string, Value>; subtotal: number; total: number; deposit: number; evidence: string[]; message_id: string };
 export type Commitment = { terms: Offer; evidence: string[] };
 export type AgentState = {
+  last_turn_metrics?: {interpretation_and_reply?: {purpose:string;latency_ms:number;status:string}[];database_execute_ms?:number;processing_before_save_ms?:number};
+  assistant_reply: string | null;
   id: string; source: 'meta' | 'mock' | null;
   turns: { id: string; sender: 'customer' | 'baker' | 'owner'; timestamp: string; text: string; source: string; reply_source?: 'meta' | 'mock' | 'fallback' | null }[];
   requested_spec: Record<string, Value>; offered_terms: Offer | null;
@@ -9,4 +11,4 @@ export type AgentState = {
   status: string; payment: string; missing_fields: string[]; decision: string;
   alerts: string[]; events: { id: string; kind: string; message_id: string; evidence: string[]; detail: string }[];
 };
-export type Business = { name: string; products: Record<string, { name: string; sizes: Record<string, number> }>; customizations: Record<string, number>; addons: Record<string, number>; fulfillment: Record<string, number>; policy: Record<string, string | number | string[]>; tone: string };
+export type Business = { name: string; products: Record<string, { name: string; unit: string; sizes: Record<string, number> }>; customizations: Record<string, number>; addons: Record<string, number>; fulfillment: Record<string, number>; policy: Record<string, string | number | string[]>; tone: string };

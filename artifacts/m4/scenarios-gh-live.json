@@ -1,0 +1,1768 @@
+[
+  {
+    "id": "84fcf6d75c8f42c997eeb36278079f2f",
+    "mode": "meta",
+    "name": "Duplicate & late deliveries",
+    "step": 3,
+    "steps": [
+      [
+        "customer-1",
+        "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup."
+      ],
+      [
+        "duplicate",
+        "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup."
+      ],
+      [
+        "out_of_order",
+        "A late delivery that must not rewrite the order."
+      ]
+    ],
+    "checks": [
+      {
+        "label": "Exactly one incoming message after duplicate and late attempts",
+        "passed": true
+      },
+      {
+        "label": "No duplicate business events",
+        "passed": true
+      },
+      {
+        "label": "Original offer preserved, no commitment invented",
+        "passed": true
+      },
+      {
+        "label": "No automatic payment verification",
+        "passed": true
+      }
+    ],
+    "inputs": {
+      "date": "2026-11-15",
+      "size": "12",
+      "product": "red_roses",
+      "initial_price": 799
+    },
+    "states": [
+      {
+        "last_turn_metrics": {
+          "database_execute_ms": 5.68,
+          "database_statements": 9,
+          "policy_evaluation_ms": 3.13,
+          "interpretation_and_reply": [
+            {
+              "status": "ok",
+              "purpose": "Interpretation",
+              "latency_ms": 33762,
+              "reasoning_effort": "model_default"
+            },
+            {
+              "status": "ok",
+              "purpose": "CustomerReply",
+              "latency_ms": 9177,
+              "reasoning_effort": "model_default"
+            }
+          ],
+          "processing_before_save_ms": 42952
+        },
+        "id": "customer-1",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "step-0",
+            "sender": "customer",
+            "timestamp": "2026-11-05T00:00:09.740913Z",
+            "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-step-0",
+            "sender": "baker",
+            "timestamp": "2026-11-05T05:30:52.689286+05:30",
+            "text": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nPickup: ₹0\nTotal: ₹799\nDeposit: ₹0\nRequested date: 2026-11-15\n\nWould you like to go ahead with this item at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-15",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "size": {
+            "value": "12",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "product": {
+            "value": "red_roses",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "step-0"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "lab-84fcf6d75c8f42c997eeb36278079f2f",
+            "name": "Bloom & Co.",
+            "tone": "Friendly and casual",
+            "addons": {
+              "ribbon_wrapping": 50,
+              "handwritten_greeting_card": 30
+            },
+            "policy": {
+              "hours": "10 AM to 6 PM IST",
+              "dietary": "Any safety or dietary issue needs owner review.",
+              "pricing": "fixed",
+              "lead_days": 0,
+              "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+              "lead_hours": 24,
+              "availability": "Local capacity ledger; no inventory connection.",
+              "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+              "closed_dates": [],
+              "capacity_unit": "orders",
+              "daily_capacity": 2,
+              "deposit_percent": 0,
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ]
+            },
+            "category": "flower shop",
+            "currency": "INR",
+            "language": "English",
+            "location": "Bengaluru, India",
+            "products": {
+              "red_roses": {
+                "name": "bouquet of 12 red roses",
+                "unit": "bouquet",
+                "sizes": {
+                  "12": 799
+                }
+              },
+              "mixed_bouquet": {
+                "name": "mixed flower bouquet",
+                "unit": "bouquet",
+                "sizes": {
+                  "standard": 499
+                }
+              }
+            },
+            "extra_units": {},
+            "fulfillment": {
+              "pickup": 0,
+              "indiranagar": 80
+            },
+            "approval_rules": [
+              "accepted_change",
+              "dietary",
+              "exact_slot",
+              "refund_dispute",
+              "unsupported_request"
+            ],
+            "customizations": {},
+            "delivery_zones": {
+              "indiranagar": [
+                "Indiranagar"
+              ]
+            },
+            "commercial_reviewed": true,
+            "require_delivery_details": false
+          },
+          "id": "offer-3",
+          "spec": {
+            "date": {
+              "value": "2026-11-15",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "step-0"
+              ]
+            }
+          },
+          "subtotal": 799,
+          "discount_percent": 0,
+          "total": 799,
+          "deposit": 0,
+          "evidence": [
+            "step-0",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-step-0"
+        },
+        "awaiting_acceptance_for": "offer-3",
+        "accepted_commitment": null,
+        "production_snapshot": null,
+        "status": "offered",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0"
+            ],
+            "detail": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-15",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "step-0"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "lab-84fcf6d75c8f42c997eeb36278079f2f",
+                "name": "Bloom & Co.",
+                "tone": "Friendly and casual",
+                "addons": {
+                  "ribbon_wrapping": 50,
+                  "handwritten_greeting_card": 30
+                },
+                "policy": {
+                  "hours": "10 AM to 6 PM IST",
+                  "dietary": "Any safety or dietary issue needs owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 0,
+                  "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                  "lead_hours": 24,
+                  "availability": "Local capacity ledger; no inventory connection.",
+                  "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "orders",
+                  "daily_capacity": 2,
+                  "deposit_percent": 0,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "flower shop",
+                "currency": "INR",
+                "language": "English",
+                "location": "Bengaluru, India",
+                "products": {
+                  "red_roses": {
+                    "name": "bouquet of 12 red roses",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "12": 799
+                    }
+                  },
+                  "mixed_bouquet": {
+                    "name": "mixed flower bouquet",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "standard": 499
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "indiranagar": 80
+                },
+                "approval_rules": [
+                  "accepted_change",
+                  "dietary",
+                  "exact_slot",
+                  "refund_dispute",
+                  "unsupported_request"
+                ],
+                "customizations": {},
+                "delivery_zones": {
+                  "indiranagar": [
+                    "Indiranagar"
+                  ]
+                },
+                "commercial_reviewed": true,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-15",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "size": {
+                  "value": "12",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "product": {
+                  "value": "red_roses",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "step-0"
+                  ]
+                }
+              },
+              "subtotal": 799,
+              "discount_percent": 0,
+              "total": 799,
+              "deposit": 0,
+              "evidence": [
+                "step-0",
+                "products.red_roses.sizes.12",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-step-0"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "step-0",
+            "evidence": [
+              "reply-step-0"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nPickup: ₹0\nTotal: ₹799\nDeposit: ₹0\nRequested date: 2026-11-15\n\nWould you like to go ahead with this item at this price?"
+      }
+    ],
+    "status": "passed",
+    "expected": "Duplicate delivery adds no messages or events; out-of-order input is rejected without changing the order.",
+    "scenario": "G",
+    "observations": [
+      {
+        "step": 1,
+        "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup.",
+        "error": null,
+        "customer": "customer-1",
+        "inference": [
+          {
+            "status": "ok",
+            "purpose": "Interpretation",
+            "latency_ms": 33762,
+            "reasoning_effort": "model_default"
+          },
+          {
+            "status": "ok",
+            "purpose": "CustomerReply",
+            "latency_ms": 9177,
+            "reasoning_effort": "model_default"
+          }
+        ],
+        "latency_ms": 42970
+      },
+      {
+        "step": 2,
+        "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-15, pickup.",
+        "error": null,
+        "customer": "duplicate",
+        "inference": [],
+        "latency_ms": 4
+      },
+      {
+        "step": 3,
+        "customer": "out_of_order",
+        "text": "A late delivery that must not rewrite the order.",
+        "latency_ms": 5,
+        "inference": [],
+        "error": null
+      }
+    ],
+    "configuration": {
+      "id": "lab-84fcf6d75c8f42c997eeb36278079f2f",
+      "name": "Bloom & Co.",
+      "tone": "Friendly and casual",
+      "addons": {
+        "ribbon_wrapping": 50,
+        "handwritten_greeting_card": 30
+      },
+      "policy": {
+        "hours": "10 AM to 6 PM IST",
+        "dietary": "Any safety or dietary issue needs owner review.",
+        "pricing": "fixed",
+        "lead_days": 0,
+        "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+        "lead_hours": 24,
+        "availability": "Local capacity ledger; no inventory connection.",
+        "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+        "closed_dates": [],
+        "capacity_unit": "orders",
+        "daily_capacity": 2,
+        "deposit_percent": 0,
+        "automatable_actions": [
+          "clarify",
+          "quote",
+          "accept_current_quote",
+          "cancel_unaccepted_draft"
+        ]
+      },
+      "category": "flower shop",
+      "currency": "INR",
+      "language": "English",
+      "location": "Bengaluru, India",
+      "products": {
+        "red_roses": {
+          "name": "bouquet of 12 red roses",
+          "unit": "bouquet",
+          "sizes": {
+            "12": 799
+          }
+        },
+        "mixed_bouquet": {
+          "name": "mixed flower bouquet",
+          "unit": "bouquet",
+          "sizes": {
+            "standard": 499
+          }
+        }
+      },
+      "extra_units": {},
+      "fulfillment": {
+        "pickup": 0,
+        "indiranagar": 80
+      },
+      "approval_rules": [
+        "accepted_change",
+        "dietary",
+        "exact_slot",
+        "refund_dispute",
+        "unsupported_request"
+      ],
+      "customizations": {},
+      "delivery_zones": {
+        "indiranagar": [
+          "Indiranagar"
+        ]
+      },
+      "commercial_reviewed": true,
+      "require_delivery_details": false
+    },
+    "capacity_override": false
+  },
+  {
+    "id": "526bfab8ca924440b72761bfc96b115f",
+    "mode": "meta",
+    "name": "Catalogue changes mid-order",
+    "step": 4,
+    "steps": [
+      [
+        "customer-1",
+        "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup."
+      ],
+      [
+        "customer-1",
+        "I confirm"
+      ],
+      [
+        "catalogue",
+        "Synthetic seller publishes a ₹100 increase for the selected variant."
+      ],
+      [
+        "customer-2",
+        "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup."
+      ]
+    ],
+    "checks": [
+      {
+        "label": "Original accepted total preserved",
+        "passed": true
+      },
+      {
+        "label": "New quote uses new price and version",
+        "passed": true
+      },
+      {
+        "label": "No automatic payment verification",
+        "passed": true
+      }
+    ],
+    "inputs": {
+      "date": "2026-11-16",
+      "size": "12",
+      "product": "red_roses",
+      "initial_price": 799
+    },
+    "states": [
+      {
+        "last_turn_metrics": {
+          "database_execute_ms": 8.26,
+          "database_statements": 9,
+          "policy_evaluation_ms": 4.67,
+          "interpretation_and_reply": [
+            {
+              "status": "ok",
+              "purpose": "Interpretation",
+              "latency_ms": 5733,
+              "reasoning_effort": "model_default"
+            },
+            {
+              "status": "ok",
+              "purpose": "CustomerReply",
+              "latency_ms": 8133,
+              "reasoning_effort": "model_default"
+            }
+          ],
+          "processing_before_save_ms": 13887
+        },
+        "id": "customer-1",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "step-0",
+            "sender": "customer",
+            "timestamp": "2026-11-05T00:01:13.484525Z",
+            "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-step-0",
+            "sender": "baker",
+            "timestamp": "2026-11-05T05:31:42.576426+05:30",
+            "text": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹799\nPickup: ₹0\nTotal: ₹799\nDeposit: ₹0\nRequested date: 2026-11-16\n\nWould you like to go ahead with this item at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "step-1",
+            "sender": "customer",
+            "timestamp": "2026-11-05T00:01:42.625608Z",
+            "text": "I confirm",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-step-1",
+            "sender": "baker",
+            "timestamp": "2026-11-05T05:31:56.522641+05:30",
+            "text": "Thanks! I’ve confirmed your item details at ₹799.\n\nThe deposit is ₹0. Payment hasn’t been verified, and production hasn’t been scheduled.",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-16",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "size": {
+            "value": "12",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "product": {
+            "value": "red_roses",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "step-0"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "step-0"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "lab-526bfab8ca924440b72761bfc96b115f",
+            "name": "Bloom & Co.",
+            "tone": "Friendly and casual",
+            "addons": {
+              "ribbon_wrapping": 50,
+              "handwritten_greeting_card": 30
+            },
+            "policy": {
+              "hours": "10 AM to 6 PM IST",
+              "dietary": "Any safety or dietary issue needs owner review.",
+              "pricing": "fixed",
+              "lead_days": 0,
+              "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+              "lead_hours": 24,
+              "availability": "Local capacity ledger; no inventory connection.",
+              "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+              "closed_dates": [],
+              "capacity_unit": "orders",
+              "daily_capacity": 2,
+              "deposit_percent": 0,
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ]
+            },
+            "category": "flower shop",
+            "currency": "INR",
+            "language": "English",
+            "location": "Bengaluru, India",
+            "products": {
+              "red_roses": {
+                "name": "bouquet of 12 red roses",
+                "unit": "bouquet",
+                "sizes": {
+                  "12": 799
+                }
+              },
+              "mixed_bouquet": {
+                "name": "mixed flower bouquet",
+                "unit": "bouquet",
+                "sizes": {
+                  "standard": 499
+                }
+              }
+            },
+            "extra_units": {},
+            "fulfillment": {
+              "pickup": 0,
+              "indiranagar": 80
+            },
+            "approval_rules": [
+              "accepted_change",
+              "dietary",
+              "exact_slot",
+              "refund_dispute",
+              "unsupported_request"
+            ],
+            "customizations": {},
+            "delivery_zones": {
+              "indiranagar": [
+                "Indiranagar"
+              ]
+            },
+            "commercial_reviewed": true,
+            "require_delivery_details": false
+          },
+          "id": "offer-3",
+          "spec": {
+            "date": {
+              "value": "2026-11-16",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "step-0"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "step-0"
+              ]
+            }
+          },
+          "subtotal": 799,
+          "discount_percent": 0,
+          "total": 799,
+          "deposit": 0,
+          "evidence": [
+            "step-0",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-step-0"
+        },
+        "awaiting_acceptance_for": null,
+        "accepted_commitment": {
+          "terms": {
+            "configuration_version": 1,
+            "configuration_snapshot": {
+              "id": "lab-526bfab8ca924440b72761bfc96b115f",
+              "name": "Bloom & Co.",
+              "tone": "Friendly and casual",
+              "addons": {
+                "ribbon_wrapping": 50,
+                "handwritten_greeting_card": 30
+              },
+              "policy": {
+                "hours": "10 AM to 6 PM IST",
+                "dietary": "Any safety or dietary issue needs owner review.",
+                "pricing": "fixed",
+                "lead_days": 0,
+                "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                "lead_hours": 24,
+                "availability": "Local capacity ledger; no inventory connection.",
+                "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                "closed_dates": [],
+                "capacity_unit": "orders",
+                "daily_capacity": 2,
+                "deposit_percent": 0,
+                "automatable_actions": [
+                  "clarify",
+                  "quote",
+                  "accept_current_quote",
+                  "cancel_unaccepted_draft"
+                ]
+              },
+              "category": "flower shop",
+              "currency": "INR",
+              "language": "English",
+              "location": "Bengaluru, India",
+              "products": {
+                "red_roses": {
+                  "name": "bouquet of 12 red roses",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "12": 799
+                  }
+                },
+                "mixed_bouquet": {
+                  "name": "mixed flower bouquet",
+                  "unit": "bouquet",
+                  "sizes": {
+                    "standard": 499
+                  }
+                }
+              },
+              "extra_units": {},
+              "fulfillment": {
+                "pickup": 0,
+                "indiranagar": 80
+              },
+              "approval_rules": [
+                "accepted_change",
+                "dietary",
+                "exact_slot",
+                "refund_dispute",
+                "unsupported_request"
+              ],
+              "customizations": {},
+              "delivery_zones": {
+                "indiranagar": [
+                  "Indiranagar"
+                ]
+              },
+              "commercial_reviewed": true,
+              "require_delivery_details": false
+            },
+            "id": "offer-3",
+            "spec": {
+              "date": {
+                "value": "2026-11-16",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "step-0"
+                ]
+              }
+            },
+            "subtotal": 799,
+            "discount_percent": 0,
+            "total": 799,
+            "deposit": 0,
+            "evidence": [
+              "step-0",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "message_id": "reply-step-0"
+          },
+          "evidence": [
+            "step-1",
+            "reply-step-0"
+          ]
+        },
+        "production_snapshot": null,
+        "status": "accepted",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0"
+            ],
+            "detail": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-16",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "step-0"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "step-0"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "step-0",
+            "evidence": [
+              "step-0",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "lab-526bfab8ca924440b72761bfc96b115f",
+                "name": "Bloom & Co.",
+                "tone": "Friendly and casual",
+                "addons": {
+                  "ribbon_wrapping": 50,
+                  "handwritten_greeting_card": 30
+                },
+                "policy": {
+                  "hours": "10 AM to 6 PM IST",
+                  "dietary": "Any safety or dietary issue needs owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 0,
+                  "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                  "lead_hours": 24,
+                  "availability": "Local capacity ledger; no inventory connection.",
+                  "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "orders",
+                  "daily_capacity": 2,
+                  "deposit_percent": 0,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "flower shop",
+                "currency": "INR",
+                "language": "English",
+                "location": "Bengaluru, India",
+                "products": {
+                  "red_roses": {
+                    "name": "bouquet of 12 red roses",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "12": 799
+                    }
+                  },
+                  "mixed_bouquet": {
+                    "name": "mixed flower bouquet",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "standard": 499
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "indiranagar": 80
+                },
+                "approval_rules": [
+                  "accepted_change",
+                  "dietary",
+                  "exact_slot",
+                  "refund_dispute",
+                  "unsupported_request"
+                ],
+                "customizations": {},
+                "delivery_zones": {
+                  "indiranagar": [
+                    "Indiranagar"
+                  ]
+                },
+                "commercial_reviewed": true,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-16",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "size": {
+                  "value": "12",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "product": {
+                  "value": "red_roses",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "step-0"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "step-0"
+                  ]
+                }
+              },
+              "subtotal": 799,
+              "discount_percent": 0,
+              "total": 799,
+              "deposit": 0,
+              "evidence": [
+                "step-0",
+                "products.red_roses.sizes.12",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-step-0"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "step-0",
+            "evidence": [
+              "reply-step-0"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e5",
+            "kind": "incoming",
+            "message_id": "step-1",
+            "evidence": [
+              "step-1"
+            ],
+            "detail": "I confirm",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e6",
+            "kind": "accepted",
+            "message_id": "step-1",
+            "evidence": [
+              "step-1",
+              "reply-step-0"
+            ],
+            "detail": "offer-3",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e7",
+            "kind": "reply",
+            "message_id": "step-1",
+            "evidence": [
+              "reply-step-1"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Thanks! I’ve confirmed your item details at ₹799.\n\nThe deposit is ₹0. Payment hasn’t been verified, and production hasn’t been scheduled."
+      },
+      {
+        "last_turn_metrics": {
+          "database_execute_ms": 5.52,
+          "database_statements": 9,
+          "policy_evaluation_ms": 2.58,
+          "interpretation_and_reply": [
+            {
+              "status": "ok",
+              "purpose": "Interpretation",
+              "latency_ms": 14515,
+              "reasoning_effort": "model_default"
+            },
+            {
+              "status": "ok",
+              "purpose": "CustomerReply",
+              "latency_ms": 7457,
+              "reasoning_effort": "model_default"
+            }
+          ],
+          "processing_before_save_ms": 21984
+        },
+        "id": "customer-2",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "step-3",
+            "sender": "customer",
+            "timestamp": "2026-11-05T00:01:56.635662Z",
+            "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-step-3",
+            "sender": "baker",
+            "timestamp": "2026-11-05T05:32:18.616588+05:30",
+            "text": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹899\nPickup: ₹0\nTotal: ₹899\nDeposit: ₹0\nRequested date: 2026-11-16\n\nShall we go ahead with these details and this total?",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-16",
+            "evidence": [
+              "step-3"
+            ]
+          },
+          "size": {
+            "value": "12",
+            "evidence": [
+              "step-3"
+            ]
+          },
+          "product": {
+            "value": "red_roses",
+            "evidence": [
+              "step-3"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "step-3"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "step-3"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 2,
+          "configuration_snapshot": {
+            "id": "lab-526bfab8ca924440b72761bfc96b115f",
+            "name": "Bloom & Co.",
+            "tone": "Friendly and casual",
+            "addons": {
+              "ribbon_wrapping": 50,
+              "handwritten_greeting_card": 30
+            },
+            "policy": {
+              "hours": "10 AM to 6 PM IST",
+              "dietary": "Any safety or dietary issue needs owner review.",
+              "pricing": "fixed",
+              "lead_days": 0,
+              "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+              "lead_hours": 24,
+              "availability": "Local capacity ledger; no inventory connection.",
+              "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+              "closed_dates": [],
+              "capacity_unit": "orders",
+              "daily_capacity": 2,
+              "deposit_percent": 0,
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ]
+            },
+            "category": "flower shop",
+            "currency": "INR",
+            "language": "English",
+            "location": "Bengaluru, India",
+            "products": {
+              "red_roses": {
+                "name": "bouquet of 12 red roses",
+                "unit": "bouquet",
+                "sizes": {
+                  "12": 899
+                }
+              },
+              "mixed_bouquet": {
+                "name": "mixed flower bouquet",
+                "unit": "bouquet",
+                "sizes": {
+                  "standard": 499
+                }
+              }
+            },
+            "extra_units": {},
+            "fulfillment": {
+              "pickup": 0,
+              "indiranagar": 80
+            },
+            "approval_rules": [
+              "accepted_change",
+              "dietary",
+              "exact_slot",
+              "refund_dispute",
+              "unsupported_request"
+            ],
+            "customizations": {},
+            "delivery_zones": {
+              "indiranagar": [
+                "Indiranagar"
+              ]
+            },
+            "commercial_reviewed": true,
+            "require_delivery_details": false
+          },
+          "id": "offer-3",
+          "spec": {
+            "date": {
+              "value": "2026-11-16",
+              "evidence": [
+                "step-3"
+              ]
+            },
+            "size": {
+              "value": "12",
+              "evidence": [
+                "step-3"
+              ]
+            },
+            "product": {
+              "value": "red_roses",
+              "evidence": [
+                "step-3"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "step-3"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "step-3"
+              ]
+            }
+          },
+          "subtotal": 899,
+          "discount_percent": 0,
+          "total": 899,
+          "deposit": 0,
+          "evidence": [
+            "step-3",
+            "products.red_roses.sizes.12",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-step-3"
+        },
+        "awaiting_acceptance_for": "offer-3",
+        "accepted_commitment": null,
+        "production_snapshot": null,
+        "status": "offered",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "step-3",
+            "evidence": [
+              "step-3"
+            ],
+            "detail": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "step-3",
+            "evidence": [
+              "step-3"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-16",
+                "evidence": [
+                  "step-3"
+                ]
+              },
+              "size": {
+                "value": "12",
+                "evidence": [
+                  "step-3"
+                ]
+              },
+              "product": {
+                "value": "red_roses",
+                "evidence": [
+                  "step-3"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "step-3"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "step-3"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "step-3",
+            "evidence": [
+              "step-3",
+              "products.red_roses.sizes.12",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 2,
+              "configuration_snapshot": {
+                "id": "lab-526bfab8ca924440b72761bfc96b115f",
+                "name": "Bloom & Co.",
+                "tone": "Friendly and casual",
+                "addons": {
+                  "ribbon_wrapping": 50,
+                  "handwritten_greeting_card": 30
+                },
+                "policy": {
+                  "hours": "10 AM to 6 PM IST",
+                  "dietary": "Any safety or dietary issue needs owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 0,
+                  "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+                  "lead_hours": 24,
+                  "availability": "Local capacity ledger; no inventory connection.",
+                  "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "orders",
+                  "daily_capacity": 2,
+                  "deposit_percent": 0,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "flower shop",
+                "currency": "INR",
+                "language": "English",
+                "location": "Bengaluru, India",
+                "products": {
+                  "red_roses": {
+                    "name": "bouquet of 12 red roses",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "12": 899
+                    }
+                  },
+                  "mixed_bouquet": {
+                    "name": "mixed flower bouquet",
+                    "unit": "bouquet",
+                    "sizes": {
+                      "standard": 499
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "indiranagar": 80
+                },
+                "approval_rules": [
+                  "accepted_change",
+                  "dietary",
+                  "exact_slot",
+                  "refund_dispute",
+                  "unsupported_request"
+                ],
+                "customizations": {},
+                "delivery_zones": {
+                  "indiranagar": [
+                    "Indiranagar"
+                  ]
+                },
+                "commercial_reviewed": true,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-16",
+                  "evidence": [
+                    "step-3"
+                  ]
+                },
+                "size": {
+                  "value": "12",
+                  "evidence": [
+                    "step-3"
+                  ]
+                },
+                "product": {
+                  "value": "red_roses",
+                  "evidence": [
+                    "step-3"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "step-3"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "step-3"
+                  ]
+                }
+              },
+              "subtotal": 899,
+              "discount_percent": 0,
+              "total": 899,
+              "deposit": 0,
+              "evidence": [
+                "step-3",
+                "products.red_roses.sizes.12",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-step-3"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "step-3",
+            "evidence": [
+              "reply-step-3"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Lovely, here are the details:\n\n1 × bouquet of 12 red roses: ₹899\nPickup: ₹0\nTotal: ₹899\nDeposit: ₹0\nRequested date: 2026-11-16\n\nShall we go ahead with these details and this total?"
+      }
+    ],
+    "status": "passed",
+    "expected": "A published price change affects a new quote while the accepted order retains its original terms.",
+    "scenario": "H",
+    "observations": [
+      {
+        "step": 1,
+        "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+        "error": null,
+        "customer": "customer-1",
+        "inference": [
+          {
+            "status": "ok",
+            "purpose": "Interpretation",
+            "latency_ms": 19955,
+            "reasoning_effort": "model_default"
+          },
+          {
+            "status": "ok",
+            "purpose": "CustomerReply",
+            "latency_ms": 9127,
+            "reasoning_effort": "model_default"
+          }
+        ],
+        "latency_ms": 29112
+      },
+      {
+        "step": 2,
+        "text": "I confirm",
+        "error": null,
+        "customer": "customer-1",
+        "inference": [
+          {
+            "status": "ok",
+            "purpose": "Interpretation",
+            "latency_ms": 5733,
+            "reasoning_effort": "model_default"
+          },
+          {
+            "status": "ok",
+            "purpose": "CustomerReply",
+            "latency_ms": 8133,
+            "reasoning_effort": "model_default"
+          }
+        ],
+        "latency_ms": 13911
+      },
+      {
+        "step": 3,
+        "text": "Synthetic seller publishes a ₹100 increase for the selected variant.",
+        "error": null,
+        "customer": "catalogue",
+        "inference": [],
+        "latency_ms": 23
+      },
+      {
+        "step": 4,
+        "customer": "customer-2",
+        "text": "I would like 1 bouquet of 12 red roses, size 12 bouquet, on 2026-11-16, pickup.",
+        "latency_ms": 22003,
+        "inference": [
+          {
+            "purpose": "Interpretation",
+            "reasoning_effort": "model_default",
+            "latency_ms": 14515,
+            "status": "ok"
+          },
+          {
+            "purpose": "CustomerReply",
+            "reasoning_effort": "model_default",
+            "latency_ms": 7457,
+            "status": "ok"
+          }
+        ],
+        "error": null
+      }
+    ],
+    "configuration": {
+      "id": "lab-526bfab8ca924440b72761bfc96b115f",
+      "name": "Bloom & Co.",
+      "tone": "Friendly and casual",
+      "addons": {
+        "ribbon_wrapping": 50,
+        "handwritten_greeting_card": 30
+      },
+      "policy": {
+        "hours": "10 AM to 6 PM IST",
+        "dietary": "Any safety or dietary issue needs owner review.",
+        "pricing": "fixed",
+        "lead_days": 0,
+        "escalation": "Unsupported requests, exact delivery slots and accepted changes need owner review.",
+        "lead_hours": 24,
+        "availability": "Local capacity ledger; no inventory connection.",
+        "cancellation": "Changes and cancellations after acceptance need owner approval; no automatic refunds.",
+        "closed_dates": [],
+        "capacity_unit": "orders",
+        "daily_capacity": 2,
+        "deposit_percent": 0,
+        "automatable_actions": [
+          "clarify",
+          "quote",
+          "accept_current_quote",
+          "cancel_unaccepted_draft"
+        ]
+      },
+      "category": "flower shop",
+      "currency": "INR",
+      "language": "English",
+      "location": "Bengaluru, India",
+      "products": {
+        "red_roses": {
+          "name": "bouquet of 12 red roses",
+          "unit": "bouquet",
+          "sizes": {
+            "12": 799
+          }
+        },
+        "mixed_bouquet": {
+          "name": "mixed flower bouquet",
+          "unit": "bouquet",
+          "sizes": {
+            "standard": 499
+          }
+        }
+      },
+      "extra_units": {},
+      "fulfillment": {
+        "pickup": 0,
+        "indiranagar": 80
+      },
+      "approval_rules": [
+        "accepted_change",
+        "dietary",
+        "exact_slot",
+        "refund_dispute",
+        "unsupported_request"
+      ],
+      "customizations": {},
+      "delivery_zones": {
+        "indiranagar": [
+          "Indiranagar"
+        ]
+      },
+      "commercial_reviewed": true,
+      "require_delivery_details": false
+    },
+    "capacity_override": false
+  }
+]
