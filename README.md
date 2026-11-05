@@ -2,13 +2,15 @@
 
 Configure once. Automate routine sales. Escalate genuine exceptions.
 
+**Demo film (2:45):** [MP4](artifacts/orderguard-hackathon-demo.mp4) · [subtitles](artifacts/orderguard-hackathon-demo.srt) · [provenance and verification](artifacts/video-evidence/README.md). Synthetic customers, genuine Meta Muse inference; edited waits are disclosed in the film.
+
 **Recording demo:** open [customer chat](http://127.0.0.1:3000/demo/customer) and [seller workspace](http://127.0.0.1:3000/demo/seller) in two windows of the same browser/profile. Click **Fresh demo** once. It copies the configured bakery into a new isolated synthetic workspace and preserves all existing data. See [the four-message recording script](docs/RECORDING_DEMO.md).
 
 OrderGuard is a local, synthetic sales and order workspace for small businesses. **M3 adds conversational seller setup, editable settings, published configuration versions and an isolated Scenario Lab.** Meta Muse interprets language and selects validated replies. Python alone authorizes prices, capacity reservations and commitments. M4 adds a signature-verified Instagram inbox adapter and isolated replay; no live Instagram account, real payments, external notifications, authentication or cloud deployment is connected.
 
 ## Final submission package
 
-[Copy-ready submission and owner checklist](docs/SUBMISSION.md) · [Exact recording script and manual UI checks](docs/DEMO.md) · [Final verified results](docs/FINAL_VERIFICATION.md). Feature freeze: no new Instagram functionality or performance changes. Full final-session browser acceptance is incomplete; see the verification record.
+[Copy-ready submission and owner checklist](docs/SUBMISSION.md) · [Recorded walkthrough](artifacts/orderguard-hackathon-demo.mp4) · [Exact recording script and manual UI checks](docs/DEMO.md) · [Final verified results](docs/FINAL_VERIFICATION.md). Feature freeze: no new Instagram functionality or performance changes. Full final-session browser acceptance is incomplete; see the verification record.
 
 ## Run
 

@@ -17,7 +17,7 @@ Implemented only the requested customer/seller recording polish. No provider, pr
 
 Evidence: [HTTP rehearsal](../artifacts/demo-polish/live-http.json) and [browser-submitted final persisted state](../artifacts/demo-polish/browser-final-state.json). These contain fictional data only.
 
-The browser-extension access host was unavailable. Native Chrome returned a blank capture surface. Native Safari was successfully used instead; intermittent foreground/capture errors were retried, not counted as product success. Mobile breakpoints are implemented but were not exercised on a real phone. No public service, live Instagram account, real payment, OAuth, remote push or deployment was tested or performed.
+The browser-extension access host was unavailable. Native Chrome returned a blank capture surface. Native Safari was successfully used instead; intermittent foreground/capture errors were retried, not counted as product success. Mobile breakpoints are implemented but were not exercised on a real phone. No public service, live Instagram account, real payment, OAuth, remote push or deployment was tested or performed as part of this recording task.
 
 ## Files changed
 
@@ -29,4 +29,4 @@ The browser-extension access host was unavailable. Native Chrome returned a blan
 - `backend/scripts/verify_recording_demo.py`: opt-in real Muse rehearsal with persisted-state assertions.
 - README, recording instructions, verification evidence and this report.
 
-Exact startup, test commands, messages and three-minute recording sequence are in [RECORDING_DEMO.md](RECORDING_DEMO.md). The next action is to record the video. No additional product milestone was started.
+Exact startup, test commands, messages and three-minute recording sequence are in [RECORDING_DEMO.md](RECORDING_DEMO.md). The film was produced from these recordings: [MP4](../artifacts/orderguard-hackathon-demo.mp4), [subtitles](../artifacts/orderguard-hackathon-demo.srt), [provenance and technical verification](../artifacts/video-evidence/README.md). No additional product milestone was started.

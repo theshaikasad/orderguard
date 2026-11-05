@@ -37,7 +37,7 @@ Latest user request authorizes M3 completion, Scenario G/H, supported catalogue 
 
 ## Final local verification
 
-- Final application image: **149 backend tests passed** against PostgreSQL; all original regressions retained. One upstream deprecation warning remains.
+- Final application image: **151 backend tests passed** against PostgreSQL in the final polish re-run; all original regressions retained. One upstream deprecation warning remains.
 - Frontend lint, three text-menu tests, native production build and final Docker builds passed.
 - Final Compose startup: database/backend/frontend healthy; overview/settings/Lab/channels and their API routes return HTTP 200.
 - Runtime and clean disposable migration check both reached `0004_instagram`.
@@ -50,4 +50,4 @@ Latest user request authorizes M3 completion, Scenario G/H, supported catalogue 
 
 ## Remaining blockers / stop boundary
 
-Full Chrome-extension UI acceptance/mobile visual QA remain unverified because the browser access host was unavailable. OAuth, professional-account authorization, public webhook delivery, remote revocation and live Instagram sends are incomplete. No public deployment, remote push, real customer message, payment or hackathon submission was performed. Stop at the authorized M3/M4 adapter and demo-preparation boundary.
+Full Chrome-extension UI acceptance/mobile visual QA remain unverified because the browser access host was unavailable. OAuth, professional-account authorization, public webhook delivery, remote revocation and live Instagram sends are incomplete. No public deployment, real customer message, payment or hackathon submission was performed. The authorized final source and demo film push to `origin/main` was completed on November 5, 2026. Stop at the authorized M3/M4 adapter and demo-preparation boundary.

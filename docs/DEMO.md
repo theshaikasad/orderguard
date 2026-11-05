@@ -1,6 +1,6 @@
 # Recording script and manual browser acceptance
 
-Target: an edited 2–3 minute walkthrough, not an official duration requirement. Record actual requests and responses. Cut or accelerate waiting time with a visible “Model wait shortened” caption; never replace inference with scripted responses. No recording or uploaded demo link exists yet.
+Target: an edited 2–3 minute walkthrough, not an official duration requirement. Record actual requests and responses. Cut or accelerate waiting time with a visible “Model wait shortened” caption; never replace inference with scripted responses. The produced 2:45 film is [artifacts/orderguard-hackathon-demo.mp4](../artifacts/orderguard-hackathon-demo.mp4) with [provenance and verification](../artifacts/video-evidence/README.md); no hosted upload link exists yet.
 
 Keep this caption visible: **Synthetic customers · real Meta Muse Spark inference · local simulator**. Show `Audit & debug details` → `Interpretation: meta` and the reply source. A checked fallback is possible: disclose it if used; do not call fallback wording Muse-generated. Setup errors and Scenario Lab errors remain errors.
 

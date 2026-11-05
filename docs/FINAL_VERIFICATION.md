@@ -1,6 +1,21 @@
 # Final freeze verification — November 5, 2026
 
-Scope: verify existing M3 / partial M4 and prepare submission. **No application code, architecture, migrations, pricing behavior or performance settings were changed during this freeze task.** Existing uncommitted M3/M4 implementation is included in the local submission commit. No remote push, public deployment, upload, submission or real Instagram send occurred.
+Scope: verify existing M3 / partial M4 and prepare submission. **No architecture, migrations, pricing behavior or performance settings were changed.** Existing uncommitted M3/M4 implementation is included in the submission commits. No public deployment, upload, submission or real Instagram send occurred.
+
+## Final polish re-verification
+
+The recorded film, documentation links and final repository state were polished after the freeze checks below. No runtime business logic changed.
+
+| Check | Result |
+|---|---|
+| PostgreSQL backend regressions | **151 passed**, 1 upstream Starlette/AnyIO deprecation warning, 5.44 seconds |
+| Frontend lint / catalogue tests / production build | Passed / **3 passed** / Passed (TypeScript and all 10 routes) |
+| Docker Compose services | db, backend and frontend healthy; loopback bindings retained |
+| Pages `/`, `/overview`, `/channels`, `/demo/customer`, `/demo/seller`, `/fixtures`, `/lab`, `/settings` | All HTTP 200 |
+| Direct `GET /health`, `GET /ready` | Both HTTP 200 |
+| Demo film | 2:45, 1080p, captions and provenance recorded in `artifacts/video-evidence/` |
+| Push | Authorized by the owner and pushed to `origin/main`; no visibility change, deployment or submission |
+| Secret check | No private runtime credentials were written to tracked files |
 
 ## Fresh checks
 
@@ -12,7 +27,7 @@ Scope: verify existing M3 / partial M4 and prepare submission. **No application 
 | HTTP pages | `/overview`, `/settings`, `/`, `/lab`, `/channels` all HTTP 200 |
 | Frontend proxy reads | `/api/settings`, `/api/overview`, `/api/lab` HTTP 200 |
 | `/api/health` | HTTP 404: not an exposed proxy route; use direct backend `/health` or `/ready` |
-| PostgreSQL backend regressions | **149 passed**, 1 upstream Starlette/AnyIO deprecation warning, 12.60 seconds |
+| PostgreSQL backend regressions | **151 passed**, 1 upstream Starlette/AnyIO deprecation warning, 5.44 seconds (final polish re-run; original freeze run passed the then-current 149 tests) |
 | `npm run lint` | Passed |
 | `npm run test:catalogue` | **3 passed**; Node experimental/type-module warnings only |
 | `npm run build -- --webpack` | Passed; compiled, TypeScript checked and all routes generated |
@@ -69,12 +84,12 @@ No additional latency experiment was run. Existing verification scripts record p
 
 Initial audit covered 94 candidate tracked/nonignored files, compared three configured private runtime values without printing them, scanned common private-key/token patterns, and checked 68 reachable Git objects. No findings. Environment/database examples are permitted, actual `.env`, `backend/.env`, `frontend/.env.local`, `.db` and `.sqlite3` paths are ignored; none were tracked. `.dockerignore` excludes environment files, local databases and caches. The expanded candidate scan also passed with no findings; [security-audit.json](../artifacts/submission/security-audit.json). Scan limitations remain: matching configured values and common patterns cannot prove absence of every possible secret.
 
-Configured remote: `origin git@github.com:theshaikasad/orderguard.git`; local branch `main`. Authenticated `gh repo view` confirmed GitHub **PRIVATE**, default branch `main`. No visibility change or remote push was performed. GitHub anonymous lookup returned 404. Judge access and any open-source/license requirement require owner review in the actual participant form; no license was selected on the owner's behalf.
+Configured remote: `origin git@github.com:theshaikasad/orderguard.git`; local branch `main`. Authenticated `gh repo view` confirmed GitHub **PRIVATE**, default branch `main`. No visibility change was performed. GitHub anonymous lookup returned 404. Judge access and any open-source/license requirement require owner review in the actual participant form; no license was selected on the owner's behalf.
 
-All current source, migrations, lockfiles, synthetic evidence and submission docs are to be committed locally. The final handoff records the resulting commit and clean working-tree check. Push authentication/divergence is not yet verified; commands are in `SUBMISSION.md`.
+All current source, migrations, lockfiles, synthetic evidence and submission docs are pushed to `origin/main`. The final polish pass verified a clean working tree, SSH push access and remote alignment; see `SUBMISSION.md`.
 
 ## Remaining owner work
 
-Complete manual browser acceptance, record/upload the actual demo, establish judge repository access, inspect authenticated submission requirements, then submit personally before **7:30 AM IST**. No demo link is available. Meta credentials are present; Instagram account/token/OAuth access remains incomplete and is unnecessary for this synthetic demonstration.
+Complete manual browser acceptance, upload the recorded demo, establish judge repository access, inspect authenticated submission requirements, then submit personally before **7:30 AM IST**. The local film is [orderguard-hackathon-demo.mp4](../artifacts/orderguard-hackathon-demo.mp4); no hosted demo link is available yet. Meta credentials are present; Instagram account/token/OAuth access remains incomplete and is unnecessary for this synthetic demonstration.
 
 Known product limits are unchanged: one order per conversation, no authentication/payment verification/real inventory, no owner resolution of pending reviews, English/INR/India time, keyword delivery zones, model latency and coarse lock contention. Feature freeze remains in effect.
