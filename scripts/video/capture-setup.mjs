@@ -1,0 +1,11 @@
+import{chromium}from'/tmp/orderguard-video-tools/node_modules/playwright/index.mjs';import fs from'node:fs/promises';
+const out=new URL('../../artifacts/video-production/',import.meta.url).pathname;
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+const c=await b.newContext({viewport:{width:1920,height:1080},recordVideo:{dir:out+'raw',size:{width:1920,height:1080}}});
+await c.addInitScript(()=>localStorage.setItem('orderguard-business','shop-6e3e0b5f795a45fa937920f1afe9360b'));
+const p=await c.newPage();await p.goto('http://127.0.0.1:3000/settings',{waitUntil:'networkidle'});await p.waitForTimeout(800);
+await p.locator('.setup-chat').evaluate(el=>el.scrollTo({top:0,behavior:'instant'}));await p.screenshot({path:out+'frames/setup-history.png'});await p.waitForTimeout(4000);
+await p.locator('.setup-chat').evaluate(el=>el.scrollTo({top:el.scrollHeight,behavior:'smooth'}));await p.waitForTimeout(2500);
+await p.getByRole('button',{name:'Review & Publish',exact:true}).click();await p.waitForTimeout(1000);
+await p.getByText(/Published history/).click();await p.getByText(/Published history/).scrollIntoViewIfNeeded();await p.waitForTimeout(3500);
+await p.screenshot({path:out+'frames/setup-versions.png'});const v=p.video();await c.close();await fs.rename(await v.path(),out+'raw/setup-history.webm');await b.close();

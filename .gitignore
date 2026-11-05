@@ -15,3 +15,6 @@ backend/data/
 *.sqlite3-*
 *.db
 *.sql.gz
+
+# Local raw recordings, intermediate renders and narration caches
+artifacts/video-production/
