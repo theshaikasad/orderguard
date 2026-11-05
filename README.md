@@ -2,6 +2,8 @@
 
 Configure once. Automate routine sales. Escalate genuine exceptions.
 
+**Recording demo:** open [customer chat](http://127.0.0.1:3000/demo/customer) and [seller workspace](http://127.0.0.1:3000/demo/seller) in two windows of the same browser/profile. Click **Fresh demo** once. It copies the configured bakery into a new isolated synthetic workspace and preserves all existing data. See [the four-message recording script](docs/RECORDING_DEMO.md).
+
 OrderGuard is a local, synthetic sales and order workspace for small businesses. **M3 adds conversational seller setup, editable settings, published configuration versions and an isolated Scenario Lab.** Meta Muse interprets language and selects validated replies. Python alone authorizes prices, capacity reservations and commitments. M4 adds a signature-verified Instagram inbox adapter and isolated replay; no live Instagram account, real payments, external notifications, authentication or cloud deployment is connected.
 
 ## Final submission package

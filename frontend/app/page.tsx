@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Navigation from '../components/Navigation';
+import { OrderFacts, OfferDetails } from '../components/OrderDetails';
 import { businessHeaders } from '../lib/workspace';
 import { useEffect, useRef, useState } from 'react';
 import type { AgentState, Business, Commitment, Offer, Value } from '../lib/agent';
@@ -58,8 +59,8 @@ export default function Workspace() {
   const readable = (value: string) => value.replaceAll('_', ' ').replace(/^./, c => c.toUpperCase());
   const fieldNames: Record<string, string> = { product: 'Product', size: 'Size', quantity: 'Quantity', date: 'Date', customizations: 'Extras', addons: 'Add-ons', fulfillment: 'Pickup / delivery', inscription: 'Message text' };
   const statusNames: Record<string, string> = { inquiry: 'New inquiry', draft: 'Details needed', offered: 'Quote sent', accepted: 'Details confirmed', in_production: 'In simulated production', cancelled: 'Cancelled' };
-  function spec(values: Record<string, Value>, configuration: Business | null = business) { return <dl>{Object.entries(values).map(([key, v]) => <div className="fact" key={key}><dt>{fieldNames[key] || readable(key)}</dt><dd>{key === 'product' ? configuration?.products[v.value]?.name || readable(v.value) : key === 'size' ? `${v.value} ${configuration?.products[values.product?.value]?.unit || ''}` : key === 'inscription' ? v.value : v.value.split(',').map(readable).join(', ') || 'None'}</dd></div>)}</dl>; }
-  function offer(o: Offer) { return <div><p><strong>Total ₹{o.total}</strong></p><p className="small muted">Items and extras ₹{o.subtotal} · delivery ₹{o.total - o.subtotal} · deposit ₹{o.deposit}</p>{spec(o.spec, o.configuration_snapshot || business)}</div>; }
+  function spec(values: Record<string, Value>, configuration: Business | null = business) { return <OrderFacts values={values} business={configuration}/>; }
+  function offer(o: Offer) { return <OfferDetails offer={o} business={business}/>; }
   function commitment(c: Commitment | null) { return c ? offer(c.terms) : <p className="muted small">None recorded</p>; }
   const examples = ['What do you offer?', 'What information do you need for a quote?', 'Are there any discounts?', 'Perfect, let’s go ahead!', 'I confirm', 'I paid.'];
   const conversationLabel = cid === 'sales-m12' ? 'Ananya Rao · synthetic customer' : cid === 'second-m12' ? 'Kabir Shah · synthetic customer' : 'Customer conversation';

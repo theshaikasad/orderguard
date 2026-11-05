@@ -1,0 +1,3335 @@
+{
+  "steps": [
+    {
+      "message": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+      "seconds": 26.78,
+      "state": {
+        "last_turn_metrics": {
+          "policy_evaluation_ms": 77.24,
+          "interpretation_and_reply": [
+            {
+              "purpose": "Interpretation",
+              "reasoning_effort": "model_default",
+              "latency_ms": 13447,
+              "status": "ok"
+            },
+            {
+              "purpose": "CustomerReply",
+              "reasoning_effort": "model_default",
+              "latency_ms": 12549,
+              "status": "ok"
+            }
+          ],
+          "database_execute_ms": 29.33,
+          "database_statements": 7,
+          "processing_before_save_ms": 26192
+        },
+        "id": "recording",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "cake",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:11.455097Z",
+            "text": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-cake",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:37.568348+05:30",
+            "text": "Here’s your cake quote:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "cake"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+            "name": "The Little Crumb",
+            "category": "",
+            "location": "",
+            "language": "English",
+            "commercial_reviewed": false,
+            "require_delivery_details": false,
+            "delivery_zones": {},
+            "extra_units": {},
+            "approval_rules": [],
+            "currency": "INR",
+            "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+            "products": {
+              "chocolate": {
+                "name": "Chocolate cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 900,
+                  "2": 1800,
+                  "1.5": 1350
+                }
+              },
+              "red_velvet": {
+                "name": "Red velvet cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 1100,
+                  "2": 2200,
+                  "1.5": 1650
+                }
+              }
+            },
+            "customizations": {
+              "eggless": 150,
+              "floral_decoration": 250
+            },
+            "addons": {
+              "candles": 50,
+              "birthday_topper": 100
+            },
+            "fulfillment": {
+              "pickup": 0,
+              "delivery_indiranagar": 100
+            },
+            "policy": {
+              "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+              "capacity_unit": "items",
+              "lead_hours": null,
+              "lead_days": 2,
+              "daily_capacity": 3,
+              "closed_dates": [],
+              "deposit_percent": 50,
+              "pricing": "fixed",
+              "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+              "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+              "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ],
+              "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity."
+            }
+          },
+          "id": "offer-3",
+          "spec": {
+            "product": {
+              "value": "chocolate",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "size": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "date": {
+              "value": "2026-11-12",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "cake"
+              ]
+            }
+          },
+          "subtotal": 900,
+          "discount_percent": 0,
+          "total": 900,
+          "deposit": 450,
+          "evidence": [
+            "cake",
+            "products.chocolate.sizes.1",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-cake"
+        },
+        "awaiting_acceptance_for": "offer-3",
+        "accepted_commitment": null,
+        "production_snapshot": null,
+        "status": "offered",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "cake",
+            "evidence": [
+              "cake",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "category": "",
+                "location": "",
+                "language": "English",
+                "commercial_reviewed": false,
+                "require_delivery_details": false,
+                "delivery_zones": {},
+                "extra_units": {},
+                "approval_rules": [],
+                "currency": "INR",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "capacity_unit": "items",
+                  "lead_hours": null,
+                  "lead_days": 2,
+                  "daily_capacity": 3,
+                  "closed_dates": [],
+                  "deposit_percent": 50,
+                  "pricing": "fixed",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ],
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity."
+                }
+              },
+              "id": "offer-3",
+              "spec": {
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "cake",
+            "evidence": [
+              "reply-cake"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Here’s your cake quote:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?"
+      }
+    },
+    {
+      "message": "Please make it eggless with floral decoration.",
+      "seconds": 21.4,
+      "state": {
+        "last_turn_metrics": {
+          "policy_evaluation_ms": 24.61,
+          "interpretation_and_reply": [
+            {
+              "purpose": "Interpretation",
+              "reasoning_effort": "model_default",
+              "latency_ms": 11653,
+              "status": "ok"
+            },
+            {
+              "purpose": "CustomerReply",
+              "reasoning_effort": "model_default",
+              "latency_ms": 9313,
+              "status": "ok"
+            }
+          ],
+          "database_execute_ms": 225.55,
+          "database_statements": 7,
+          "processing_before_save_ms": 21269
+        },
+        "id": "recording",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "cake",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:11.455097Z",
+            "text": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-cake",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:37.568348+05:30",
+            "text": "Here’s your cake quote:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "extras",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:38.286784Z",
+            "text": "Please make it eggless with floral decoration.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-extras",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:59.564618+05:30",
+            "text": "Lovely, here are the details:\n\n1 × Chocolate cake (1 kg): ₹900\nEggless × 1: ₹150\nFloral decoration × 1: ₹250\nPickup: ₹0\nTotal: ₹1300\nDeposit: ₹650\nRequested date: 2026-11-12\n\nOur eggless recipe is made in a shared kitchen; please let us know about any allergies.\n\nShall we go ahead with these details and this total?",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "customizations": {
+            "value": "eggless,floral_decoration",
+            "evidence": [
+              "extras"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+            "name": "The Little Crumb",
+            "category": "",
+            "location": "",
+            "language": "English",
+            "commercial_reviewed": false,
+            "require_delivery_details": false,
+            "delivery_zones": {},
+            "extra_units": {},
+            "approval_rules": [],
+            "currency": "INR",
+            "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+            "products": {
+              "chocolate": {
+                "name": "Chocolate cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 900,
+                  "2": 1800,
+                  "1.5": 1350
+                }
+              },
+              "red_velvet": {
+                "name": "Red velvet cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 1100,
+                  "2": 2200,
+                  "1.5": 1650
+                }
+              }
+            },
+            "customizations": {
+              "eggless": 150,
+              "floral_decoration": 250
+            },
+            "addons": {
+              "candles": 50,
+              "birthday_topper": 100
+            },
+            "fulfillment": {
+              "pickup": 0,
+              "delivery_indiranagar": 100
+            },
+            "policy": {
+              "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+              "capacity_unit": "items",
+              "lead_hours": null,
+              "lead_days": 2,
+              "daily_capacity": 3,
+              "closed_dates": [],
+              "deposit_percent": 50,
+              "pricing": "fixed",
+              "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+              "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+              "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ],
+              "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity."
+            }
+          },
+          "id": "offer-8",
+          "spec": {
+            "date": {
+              "value": "2026-11-12",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "size": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "product": {
+              "value": "chocolate",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "customizations": {
+              "value": "eggless,floral_decoration",
+              "evidence": [
+                "extras"
+              ]
+            }
+          },
+          "subtotal": 1300,
+          "discount_percent": 0,
+          "total": 1300,
+          "deposit": 650,
+          "evidence": [
+            "cake",
+            "extras",
+            "products.chocolate.sizes.1",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "customizations.eggless",
+            "customizations.floral_decoration",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-extras"
+        },
+        "awaiting_acceptance_for": "offer-8",
+        "accepted_commitment": null,
+        "production_snapshot": null,
+        "status": "offered",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "cake",
+            "evidence": [
+              "cake",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "cake",
+            "evidence": [
+              "reply-cake"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e5",
+            "kind": "incoming",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Please make it eggless with floral decoration.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e6",
+            "kind": "requested_spec_changed",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e7",
+            "kind": "offer_invalidated",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e8",
+            "kind": "offered",
+            "message_id": "extras",
+            "evidence": [
+              "cake",
+              "extras",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "customizations.eggless",
+              "customizations.floral_decoration",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-8",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "category": "",
+                "location": "",
+                "language": "English",
+                "commercial_reviewed": false,
+                "require_delivery_details": false,
+                "delivery_zones": {},
+                "extra_units": {},
+                "approval_rules": [],
+                "currency": "INR",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "capacity_unit": "items",
+                  "lead_hours": null,
+                  "lead_days": 2,
+                  "daily_capacity": 3,
+                  "closed_dates": [],
+                  "deposit_percent": 50,
+                  "pricing": "fixed",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ],
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity."
+                }
+              },
+              "id": "offer-8",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "customizations": {
+                  "value": "eggless,floral_decoration",
+                  "evidence": [
+                    "extras"
+                  ]
+                }
+              },
+              "subtotal": 1300,
+              "discount_percent": 0,
+              "total": 1300,
+              "deposit": 650,
+              "evidence": [
+                "cake",
+                "extras",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "customizations.eggless",
+                "customizations.floral_decoration",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-extras"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e9",
+            "kind": "reply",
+            "message_id": "extras",
+            "evidence": [
+              "reply-extras"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Lovely, here are the details:\n\n1 × Chocolate cake (1 kg): ₹900\nEggless × 1: ₹150\nFloral decoration × 1: ₹250\nPickup: ₹0\nTotal: ₹1300\nDeposit: ₹650\nRequested date: 2026-11-12\n\nOur eggless recipe is made in a shared kitchen; please let us know about any allergies.\n\nShall we go ahead with these details and this total?"
+      }
+    },
+    {
+      "message": "Perfect, let's go ahead!",
+      "seconds": 22.21,
+      "state": {
+        "last_turn_metrics": {
+          "policy_evaluation_ms": 4.03,
+          "interpretation_and_reply": [
+            {
+              "purpose": "Interpretation",
+              "reasoning_effort": "model_default",
+              "latency_ms": 15338,
+              "status": "ok"
+            },
+            {
+              "purpose": "CustomerReply",
+              "reasoning_effort": "model_default",
+              "latency_ms": 6774,
+              "status": "ok"
+            }
+          ],
+          "database_execute_ms": 5.76,
+          "database_statements": 7,
+          "processing_before_save_ms": 22134
+        },
+        "id": "recording",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "cake",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:11.455097Z",
+            "text": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-cake",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:37.568348+05:30",
+            "text": "Here’s your cake quote:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "extras",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:38.286784Z",
+            "text": "Please make it eggless with floral decoration.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-extras",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:59.564618+05:30",
+            "text": "Lovely, here are the details:\n\n1 × Chocolate cake (1 kg): ₹900\nEggless × 1: ₹150\nFloral decoration × 1: ₹250\nPickup: ₹0\nTotal: ₹1300\nDeposit: ₹650\nRequested date: 2026-11-12\n\nOur eggless recipe is made in a shared kitchen; please let us know about any allergies.\n\nShall we go ahead with these details and this total?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "accept",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:59.646649Z",
+            "text": "Perfect, let's go ahead!",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-accept",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:42:21.781196+05:30",
+            "text": "Thanks! I’ve confirmed your cake details at ₹1300.\n\nThe deposit is ₹650. Payment hasn’t been verified, and production hasn’t been scheduled.",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "customizations": {
+            "value": "eggless,floral_decoration",
+            "evidence": [
+              "extras"
+            ]
+          }
+        },
+        "offered_terms": {
+          "configuration_version": 1,
+          "configuration_snapshot": {
+            "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+            "name": "The Little Crumb",
+            "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+            "addons": {
+              "candles": 50,
+              "birthday_topper": 100
+            },
+            "policy": {
+              "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+              "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+              "pricing": "fixed",
+              "lead_days": 2,
+              "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+              "lead_hours": null,
+              "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+              "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+              "closed_dates": [],
+              "capacity_unit": "items",
+              "daily_capacity": 3,
+              "deposit_percent": 50,
+              "automatable_actions": [
+                "clarify",
+                "quote",
+                "accept_current_quote",
+                "cancel_unaccepted_draft"
+              ]
+            },
+            "category": "",
+            "currency": "INR",
+            "language": "English",
+            "location": "",
+            "products": {
+              "chocolate": {
+                "name": "Chocolate cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 900,
+                  "2": 1800,
+                  "1.5": 1350
+                }
+              },
+              "red_velvet": {
+                "name": "Red velvet cake",
+                "unit": "kg",
+                "sizes": {
+                  "1": 1100,
+                  "2": 2200,
+                  "1.5": 1650
+                }
+              }
+            },
+            "extra_units": {},
+            "fulfillment": {
+              "pickup": 0,
+              "delivery_indiranagar": 100
+            },
+            "approval_rules": [],
+            "customizations": {
+              "eggless": 150,
+              "floral_decoration": 250
+            },
+            "delivery_zones": {},
+            "commercial_reviewed": false,
+            "require_delivery_details": false
+          },
+          "id": "offer-8",
+          "spec": {
+            "date": {
+              "value": "2026-11-12",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "size": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "product": {
+              "value": "chocolate",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "quantity": {
+              "value": "1",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "fulfillment": {
+              "value": "pickup",
+              "evidence": [
+                "cake"
+              ]
+            },
+            "customizations": {
+              "value": "eggless,floral_decoration",
+              "evidence": [
+                "extras"
+              ]
+            }
+          },
+          "subtotal": 1300,
+          "discount_percent": 0,
+          "total": 1300,
+          "deposit": 650,
+          "evidence": [
+            "cake",
+            "extras",
+            "products.chocolate.sizes.1",
+            "policy.pricing",
+            "policy.deposit_percent",
+            "customizations.eggless",
+            "customizations.floral_decoration",
+            "fulfillment.pickup",
+            "policy.lead_days",
+            "policy.daily_capacity",
+            "policy.availability",
+            "policy.hours",
+            "policy.dietary"
+          ],
+          "message_id": "reply-extras"
+        },
+        "awaiting_acceptance_for": null,
+        "accepted_commitment": {
+          "terms": {
+            "configuration_version": 1,
+            "configuration_snapshot": {
+              "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+              "name": "The Little Crumb",
+              "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+              "addons": {
+                "candles": 50,
+                "birthday_topper": 100
+              },
+              "policy": {
+                "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                "pricing": "fixed",
+                "lead_days": 2,
+                "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                "lead_hours": null,
+                "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                "closed_dates": [],
+                "capacity_unit": "items",
+                "daily_capacity": 3,
+                "deposit_percent": 50,
+                "automatable_actions": [
+                  "clarify",
+                  "quote",
+                  "accept_current_quote",
+                  "cancel_unaccepted_draft"
+                ]
+              },
+              "category": "",
+              "currency": "INR",
+              "language": "English",
+              "location": "",
+              "products": {
+                "chocolate": {
+                  "name": "Chocolate cake",
+                  "unit": "kg",
+                  "sizes": {
+                    "1": 900,
+                    "2": 1800,
+                    "1.5": 1350
+                  }
+                },
+                "red_velvet": {
+                  "name": "Red velvet cake",
+                  "unit": "kg",
+                  "sizes": {
+                    "1": 1100,
+                    "2": 2200,
+                    "1.5": 1650
+                  }
+                }
+              },
+              "extra_units": {},
+              "fulfillment": {
+                "pickup": 0,
+                "delivery_indiranagar": 100
+              },
+              "approval_rules": [],
+              "customizations": {
+                "eggless": 150,
+                "floral_decoration": 250
+              },
+              "delivery_zones": {},
+              "commercial_reviewed": false,
+              "require_delivery_details": false
+            },
+            "id": "offer-8",
+            "spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            },
+            "subtotal": 1300,
+            "discount_percent": 0,
+            "total": 1300,
+            "deposit": 650,
+            "evidence": [
+              "cake",
+              "extras",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "customizations.eggless",
+              "customizations.floral_decoration",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "message_id": "reply-extras"
+          },
+          "evidence": [
+            "accept",
+            "reply-extras"
+          ]
+        },
+        "production_snapshot": null,
+        "status": "accepted",
+        "review_required": false,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "automatic",
+        "alerts": [],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "cake",
+            "evidence": [
+              "cake",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "cake",
+            "evidence": [
+              "reply-cake"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e5",
+            "kind": "incoming",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Please make it eggless with floral decoration.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e6",
+            "kind": "requested_spec_changed",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e7",
+            "kind": "offer_invalidated",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e8",
+            "kind": "offered",
+            "message_id": "extras",
+            "evidence": [
+              "cake",
+              "extras",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "customizations.eggless",
+              "customizations.floral_decoration",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-8",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-8",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "customizations": {
+                  "value": "eggless,floral_decoration",
+                  "evidence": [
+                    "extras"
+                  ]
+                }
+              },
+              "subtotal": 1300,
+              "discount_percent": 0,
+              "total": 1300,
+              "deposit": 650,
+              "evidence": [
+                "cake",
+                "extras",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "customizations.eggless",
+                "customizations.floral_decoration",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-extras"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e9",
+            "kind": "reply",
+            "message_id": "extras",
+            "evidence": [
+              "reply-extras"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e10",
+            "kind": "incoming",
+            "message_id": "accept",
+            "evidence": [
+              "accept"
+            ],
+            "detail": "Perfect, let's go ahead!",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e11",
+            "kind": "accepted",
+            "message_id": "accept",
+            "evidence": [
+              "accept",
+              "reply-extras"
+            ],
+            "detail": "offer-8",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e12",
+            "kind": "reply",
+            "message_id": "accept",
+            "evidence": [
+              "reply-accept"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "Thanks! I’ve confirmed your cake details at ₹1300.\n\nThe deposit is ₹650. Payment hasn’t been verified, and production hasn’t been scheduled."
+      }
+    },
+    {
+      "message": "Actually, please change my cake to pistachio instead.",
+      "seconds": 17.89,
+      "state": {
+        "last_turn_metrics": {
+          "policy_evaluation_ms": 1.06,
+          "interpretation_and_reply": [
+            {
+              "purpose": "Interpretation",
+              "reasoning_effort": "model_default",
+              "latency_ms": 10796,
+              "status": "ok"
+            },
+            {
+              "purpose": "CustomerReply",
+              "reasoning_effort": "model_default",
+              "latency_ms": 6961,
+              "status": "ok"
+            }
+          ],
+          "database_execute_ms": 11.85,
+          "database_statements": 6,
+          "processing_before_save_ms": 17776
+        },
+        "id": "recording",
+        "source": "meta",
+        "turns": [
+          {
+            "id": "cake",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:11.455097Z",
+            "text": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-cake",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:37.568348+05:30",
+            "text": "Here’s your cake quote:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "extras",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:38.286784Z",
+            "text": "Please make it eggless with floral decoration.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-extras",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:41:59.564618+05:30",
+            "text": "Lovely, here are the details:\n\n1 × Chocolate cake (1 kg): ₹900\nEggless × 1: ₹150\nFloral decoration × 1: ₹250\nPickup: ₹0\nTotal: ₹1300\nDeposit: ₹650\nRequested date: 2026-11-12\n\nOur eggless recipe is made in a shared kitchen; please let us know about any allergies.\n\nShall we go ahead with these details and this total?",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "accept",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:11:59.646649Z",
+            "text": "Perfect, let's go ahead!",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-accept",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:42:21.781196+05:30",
+            "text": "Thanks! I’ve confirmed your cake details at ₹1300.\n\nThe deposit is ₹650. Payment hasn’t been verified, and production hasn’t been scheduled.",
+            "source": "meta",
+            "reply_source": "meta"
+          },
+          {
+            "id": "unsupported",
+            "sender": "customer",
+            "timestamp": "2026-11-05T01:12:21.861954Z",
+            "text": "Actually, please change my cake to pistachio instead.",
+            "source": "meta",
+            "reply_source": null
+          },
+          {
+            "id": "reply-unsupported",
+            "sender": "baker",
+            "timestamp": "2026-11-05T06:42:39.627037+05:30",
+            "text": "I’ll ask the owner to check that change. Your previously confirmed cake details will stay as they are for now.",
+            "source": "meta",
+            "reply_source": "meta"
+          }
+        ],
+        "requested_spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "product": {
+            "value": "pistachio",
+            "evidence": [
+              "unsupported"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "cake"
+            ]
+          },
+          "customizations": {
+            "value": "eggless,floral_decoration",
+            "evidence": [
+              "extras"
+            ]
+          }
+        },
+        "offered_terms": null,
+        "awaiting_acceptance_for": null,
+        "accepted_commitment": {
+          "terms": {
+            "configuration_version": 1,
+            "configuration_snapshot": {
+              "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+              "name": "The Little Crumb",
+              "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+              "addons": {
+                "candles": 50,
+                "birthday_topper": 100
+              },
+              "policy": {
+                "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                "pricing": "fixed",
+                "lead_days": 2,
+                "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                "lead_hours": null,
+                "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                "closed_dates": [],
+                "capacity_unit": "items",
+                "daily_capacity": 3,
+                "deposit_percent": 50,
+                "automatable_actions": [
+                  "clarify",
+                  "quote",
+                  "accept_current_quote",
+                  "cancel_unaccepted_draft"
+                ]
+              },
+              "category": "",
+              "currency": "INR",
+              "language": "English",
+              "location": "",
+              "products": {
+                "chocolate": {
+                  "name": "Chocolate cake",
+                  "unit": "kg",
+                  "sizes": {
+                    "1": 900,
+                    "2": 1800,
+                    "1.5": 1350
+                  }
+                },
+                "red_velvet": {
+                  "name": "Red velvet cake",
+                  "unit": "kg",
+                  "sizes": {
+                    "1": 1100,
+                    "2": 2200,
+                    "1.5": 1650
+                  }
+                }
+              },
+              "extra_units": {},
+              "fulfillment": {
+                "pickup": 0,
+                "delivery_indiranagar": 100
+              },
+              "approval_rules": [],
+              "customizations": {
+                "eggless": 150,
+                "floral_decoration": 250
+              },
+              "delivery_zones": {},
+              "commercial_reviewed": false,
+              "require_delivery_details": false
+            },
+            "id": "offer-8",
+            "spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            },
+            "subtotal": 1300,
+            "discount_percent": 0,
+            "total": 1300,
+            "deposit": 650,
+            "evidence": [
+              "cake",
+              "extras",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "customizations.eggless",
+              "customizations.floral_decoration",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "message_id": "reply-extras"
+          },
+          "evidence": [
+            "accept",
+            "reply-extras"
+          ]
+        },
+        "production_snapshot": null,
+        "status": "accepted",
+        "review_required": true,
+        "payment": "unknown",
+        "missing_fields": [],
+        "decision": "needs_owner",
+        "alerts": [
+          "Changes or cancellation after confirmation need owner approval."
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "kind": "incoming",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e2",
+            "kind": "requested_spec_changed",
+            "message_id": "cake",
+            "evidence": [
+              "cake"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e3",
+            "kind": "offered",
+            "message_id": "cake",
+            "evidence": [
+              "cake",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e4",
+            "kind": "reply",
+            "message_id": "cake",
+            "evidence": [
+              "reply-cake"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e5",
+            "kind": "incoming",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Please make it eggless with floral decoration.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e6",
+            "kind": "requested_spec_changed",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "chocolate",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e7",
+            "kind": "offer_invalidated",
+            "message_id": "extras",
+            "evidence": [
+              "extras"
+            ],
+            "detail": "offer-3",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-3",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                }
+              },
+              "subtotal": 900,
+              "discount_percent": 0,
+              "total": 900,
+              "deposit": 450,
+              "evidence": [
+                "cake",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-cake"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e8",
+            "kind": "offered",
+            "message_id": "extras",
+            "evidence": [
+              "cake",
+              "extras",
+              "products.chocolate.sizes.1",
+              "policy.pricing",
+              "policy.deposit_percent",
+              "customizations.eggless",
+              "customizations.floral_decoration",
+              "fulfillment.pickup",
+              "policy.lead_days",
+              "policy.daily_capacity",
+              "policy.availability",
+              "policy.hours",
+              "policy.dietary"
+            ],
+            "detail": "offer-8",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-8",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "customizations": {
+                  "value": "eggless,floral_decoration",
+                  "evidence": [
+                    "extras"
+                  ]
+                }
+              },
+              "subtotal": 1300,
+              "discount_percent": 0,
+              "total": 1300,
+              "deposit": 650,
+              "evidence": [
+                "cake",
+                "extras",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "customizations.eggless",
+                "customizations.floral_decoration",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-extras"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e9",
+            "kind": "reply",
+            "message_id": "extras",
+            "evidence": [
+              "reply-extras"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e10",
+            "kind": "incoming",
+            "message_id": "accept",
+            "evidence": [
+              "accept"
+            ],
+            "detail": "Perfect, let's go ahead!",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e11",
+            "kind": "accepted",
+            "message_id": "accept",
+            "evidence": [
+              "accept",
+              "reply-extras"
+            ],
+            "detail": "offer-8",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e12",
+            "kind": "reply",
+            "message_id": "accept",
+            "evidence": [
+              "reply-accept"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e13",
+            "kind": "incoming",
+            "message_id": "unsupported",
+            "evidence": [
+              "unsupported"
+            ],
+            "detail": "Actually, please change my cake to pistachio instead.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e14",
+            "kind": "requested_spec_changed",
+            "message_id": "unsupported",
+            "evidence": [
+              "unsupported"
+            ],
+            "detail": "Customer request interpreted by model; not a commitment",
+            "terms": null,
+            "requested_spec": {
+              "date": {
+                "value": "2026-11-12",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "size": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "product": {
+                "value": "pistachio",
+                "evidence": [
+                  "unsupported"
+                ]
+              },
+              "quantity": {
+                "value": "1",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "fulfillment": {
+                "value": "pickup",
+                "evidence": [
+                  "cake"
+                ]
+              },
+              "customizations": {
+                "value": "eggless,floral_decoration",
+                "evidence": [
+                  "extras"
+                ]
+              }
+            }
+          },
+          {
+            "id": "e15",
+            "kind": "offer_invalidated",
+            "message_id": "unsupported",
+            "evidence": [
+              "unsupported"
+            ],
+            "detail": "offer-8",
+            "terms": {
+              "configuration_version": 1,
+              "configuration_snapshot": {
+                "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+                "name": "The Little Crumb",
+                "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+                "addons": {
+                  "candles": 50,
+                  "birthday_topper": 100
+                },
+                "policy": {
+                  "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+                  "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+                  "pricing": "fixed",
+                  "lead_days": 2,
+                  "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+                  "lead_hours": null,
+                  "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+                  "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+                  "closed_dates": [],
+                  "capacity_unit": "items",
+                  "daily_capacity": 3,
+                  "deposit_percent": 50,
+                  "automatable_actions": [
+                    "clarify",
+                    "quote",
+                    "accept_current_quote",
+                    "cancel_unaccepted_draft"
+                  ]
+                },
+                "category": "",
+                "currency": "INR",
+                "language": "English",
+                "location": "",
+                "products": {
+                  "chocolate": {
+                    "name": "Chocolate cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 900,
+                      "2": 1800,
+                      "1.5": 1350
+                    }
+                  },
+                  "red_velvet": {
+                    "name": "Red velvet cake",
+                    "unit": "kg",
+                    "sizes": {
+                      "1": 1100,
+                      "2": 2200,
+                      "1.5": 1650
+                    }
+                  }
+                },
+                "extra_units": {},
+                "fulfillment": {
+                  "pickup": 0,
+                  "delivery_indiranagar": 100
+                },
+                "approval_rules": [],
+                "customizations": {
+                  "eggless": 150,
+                  "floral_decoration": 250
+                },
+                "delivery_zones": {},
+                "commercial_reviewed": false,
+                "require_delivery_details": false
+              },
+              "id": "offer-8",
+              "spec": {
+                "date": {
+                  "value": "2026-11-12",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "size": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "product": {
+                  "value": "chocolate",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "quantity": {
+                  "value": "1",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "fulfillment": {
+                  "value": "pickup",
+                  "evidence": [
+                    "cake"
+                  ]
+                },
+                "customizations": {
+                  "value": "eggless,floral_decoration",
+                  "evidence": [
+                    "extras"
+                  ]
+                }
+              },
+              "subtotal": 1300,
+              "discount_percent": 0,
+              "total": 1300,
+              "deposit": 650,
+              "evidence": [
+                "cake",
+                "extras",
+                "products.chocolate.sizes.1",
+                "policy.pricing",
+                "policy.deposit_percent",
+                "customizations.eggless",
+                "customizations.floral_decoration",
+                "fulfillment.pickup",
+                "policy.lead_days",
+                "policy.daily_capacity",
+                "policy.availability",
+                "policy.hours",
+                "policy.dietary"
+              ],
+              "message_id": "reply-extras"
+            },
+            "requested_spec": null
+          },
+          {
+            "id": "e16",
+            "kind": "owner_review",
+            "message_id": "unsupported",
+            "evidence": [
+              "unsupported"
+            ],
+            "detail": "Changes or cancellation after confirmation need owner approval.",
+            "terms": null,
+            "requested_spec": null
+          },
+          {
+            "id": "e17",
+            "kind": "reply",
+            "message_id": "unsupported",
+            "evidence": [
+              "reply-unsupported"
+            ],
+            "detail": "Customer reply: meta",
+            "terms": null,
+            "requested_spec": null
+          }
+        ],
+        "assistant_reply": "I’ll ask the owner to check that change. Your previously confirmed cake details will stay as they are for now."
+      }
+    }
+  ],
+  "session": {
+    "business_id": "demo-11f4abab41e647a8b65d9a488fd58608",
+    "conversation_id": "recording",
+    "business": {
+      "id": "demo-11f4abab41e647a8b65d9a488fd58608",
+      "name": "The Little Crumb",
+      "category": "",
+      "location": "",
+      "language": "English",
+      "commercial_reviewed": false,
+      "require_delivery_details": false,
+      "delivery_zones": {},
+      "extra_units": {},
+      "approval_rules": [],
+      "currency": "INR",
+      "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+      "products": {
+        "chocolate": {
+          "name": "Chocolate cake",
+          "unit": "kg",
+          "sizes": {
+            "1": 900,
+            "2": 1800,
+            "1.5": 1350
+          }
+        },
+        "red_velvet": {
+          "name": "Red velvet cake",
+          "unit": "kg",
+          "sizes": {
+            "1": 1100,
+            "2": 2200,
+            "1.5": 1650
+          }
+        }
+      },
+      "customizations": {
+        "eggless": 150,
+        "floral_decoration": 250
+      },
+      "addons": {
+        "candles": 50,
+        "birthday_topper": 100
+      },
+      "fulfillment": {
+        "pickup": 0,
+        "delivery_indiranagar": 100
+      },
+      "policy": {
+        "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+        "capacity_unit": "items",
+        "lead_hours": null,
+        "lead_days": 2,
+        "daily_capacity": 3,
+        "closed_dates": [],
+        "deposit_percent": 50,
+        "pricing": "fixed",
+        "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+        "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+        "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+        "automatable_actions": [
+          "clarify",
+          "quote",
+          "accept_current_quote",
+          "cancel_unaccepted_draft"
+        ],
+        "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity."
+      }
+    }
+  },
+  "result": "PASS: live interpretation and composition, repricing, acceptance, owner alert, PostgreSQL and HTTP consistency"
+}

@@ -1,0 +1,1080 @@
+{
+  "last_turn_metrics": {
+    "database_execute_ms": 34.98,
+    "database_statements": 6,
+    "policy_evaluation_ms": 2.42,
+    "interpretation_and_reply": [
+      {
+        "status": "ok",
+        "purpose": "Interpretation",
+        "latency_ms": 15384,
+        "reasoning_effort": "model_default"
+      },
+      {
+        "status": "ok",
+        "purpose": "CustomerReply",
+        "latency_ms": 7500,
+        "reasoning_effort": "model_default"
+      }
+    ],
+    "processing_before_save_ms": 23071
+  },
+  "id": "recording",
+  "source": "meta",
+  "turns": [
+    {
+      "id": "b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "sender": "customer",
+      "timestamp": "2026-11-05T01:14:38.292000Z",
+      "text": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+      "source": "meta",
+      "reply_source": null
+    },
+    {
+      "id": "reply-b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "sender": "baker",
+      "timestamp": "2026-11-05T06:45:06.098709+05:30",
+      "text": "Lovely, here are the details:\n\n1 × Chocolate cake (1 kg): ₹900\nPickup: ₹0\nTotal: ₹900\nDeposit: ₹450\nRequested date: 2026-11-12\n\nWould you like to go ahead with this cake at this price?",
+      "source": "meta",
+      "reply_source": "meta"
+    },
+    {
+      "id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "sender": "customer",
+      "timestamp": "2026-11-05T01:16:06.614000Z",
+      "text": "Please make it eggless with floral decoration.",
+      "source": "meta",
+      "reply_source": null
+    },
+    {
+      "id": "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "sender": "baker",
+      "timestamp": "2026-11-05T06:46:29.358430+05:30",
+      "text": "Here’s the breakdown for your cake:\n\n1 × Chocolate cake (1 kg): ₹900\nEggless × 1: ₹150\nFloral decoration × 1: ₹250\nPickup: ₹0\nTotal: ₹1300\nDeposit: ₹650\nRequested date: 2026-11-12\n\nOur eggless recipe is made in a shared kitchen; please let us know about any allergies.\n\nShall we go ahead with these details and this total?",
+      "source": "meta",
+      "reply_source": "meta"
+    },
+    {
+      "id": "92b9db04-de65-4234-addb-0d37559917a8",
+      "sender": "customer",
+      "timestamp": "2026-11-05T01:16:55.588000Z",
+      "text": "Perfect, let's go ahead!",
+      "source": "meta",
+      "reply_source": null
+    },
+    {
+      "id": "reply-92b9db04-de65-4234-addb-0d37559917a8",
+      "sender": "baker",
+      "timestamp": "2026-11-05T06:47:22.895649+05:30",
+      "text": "Thanks! I’ve confirmed your cake details at ₹1300.\n\nThe deposit is ₹650. Payment hasn’t been verified, and production hasn’t been scheduled.",
+      "source": "meta",
+      "reply_source": "meta"
+    },
+    {
+      "id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "sender": "customer",
+      "timestamp": "2026-11-05T01:20:57.863000Z",
+      "text": "Actually, please change my cake to pistachio instead.",
+      "source": "meta",
+      "reply_source": null
+    },
+    {
+      "id": "reply-00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "sender": "baker",
+      "timestamp": "2026-11-05T06:51:21.491171+05:30",
+      "text": "I’ll ask the owner to check that change. Your previously confirmed cake details will stay as they are for now.",
+      "source": "meta",
+      "reply_source": "meta"
+    }
+  ],
+  "requested_spec": {
+    "date": {
+      "value": "2026-11-12",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ]
+    },
+    "size": {
+      "value": "1",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ]
+    },
+    "product": {
+      "value": "pistachio",
+      "evidence": [
+        "00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ]
+    },
+    "quantity": {
+      "value": "1",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ]
+    },
+    "fulfillment": {
+      "value": "pickup",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ]
+    },
+    "customizations": {
+      "value": "eggless,floral_decoration",
+      "evidence": [
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ]
+    }
+  },
+  "offered_terms": null,
+  "awaiting_acceptance_for": null,
+  "accepted_commitment": {
+    "terms": {
+      "configuration_version": 1,
+      "configuration_snapshot": {
+        "id": "demo-30ee0915069943509e3e914c488689ae",
+        "name": "The Little Crumb",
+        "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+        "addons": {
+          "candles": 50,
+          "birthday_topper": 100
+        },
+        "policy": {
+          "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+          "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+          "pricing": "fixed",
+          "lead_days": 2,
+          "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+          "lead_hours": null,
+          "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+          "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+          "closed_dates": [],
+          "capacity_unit": "items",
+          "daily_capacity": 3,
+          "deposit_percent": 50,
+          "automatable_actions": [
+            "clarify",
+            "quote",
+            "accept_current_quote",
+            "cancel_unaccepted_draft"
+          ]
+        },
+        "category": "",
+        "currency": "INR",
+        "language": "English",
+        "location": "",
+        "products": {
+          "chocolate": {
+            "name": "Chocolate cake",
+            "unit": "kg",
+            "sizes": {
+              "1": 900,
+              "2": 1800,
+              "1.5": 1350
+            }
+          },
+          "red_velvet": {
+            "name": "Red velvet cake",
+            "unit": "kg",
+            "sizes": {
+              "1": 1100,
+              "2": 2200,
+              "1.5": 1650
+            }
+          }
+        },
+        "extra_units": {},
+        "fulfillment": {
+          "pickup": 0,
+          "delivery_indiranagar": 100
+        },
+        "approval_rules": [],
+        "customizations": {
+          "eggless": 150,
+          "floral_decoration": 250
+        },
+        "delivery_zones": {},
+        "commercial_reviewed": false,
+        "require_delivery_details": false
+      },
+      "id": "offer-8",
+      "spec": {
+        "date": {
+          "value": "2026-11-12",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "size": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "product": {
+          "value": "chocolate",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "fulfillment": {
+          "value": "pickup",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "customizations": {
+          "value": "eggless,floral_decoration",
+          "evidence": [
+            "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+          ]
+        }
+      },
+      "subtotal": 1300,
+      "discount_percent": 0,
+      "total": 1300,
+      "deposit": 650,
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d",
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+        "products.chocolate.sizes.1",
+        "policy.pricing",
+        "policy.deposit_percent",
+        "customizations.eggless",
+        "customizations.floral_decoration",
+        "fulfillment.pickup",
+        "policy.lead_days",
+        "policy.daily_capacity",
+        "policy.availability",
+        "policy.hours",
+        "policy.dietary"
+      ],
+      "message_id": "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+    },
+    "evidence": [
+      "92b9db04-de65-4234-addb-0d37559917a8",
+      "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+    ]
+  },
+  "production_snapshot": null,
+  "status": "accepted",
+  "review_required": true,
+  "payment": "unknown",
+  "missing_fields": [],
+  "decision": "needs_owner",
+  "alerts": [
+    "Changes or cancellation after confirmation need owner approval."
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "kind": "incoming",
+      "message_id": "b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ],
+      "detail": "Hi! I'd like one 1 kg chocolate cake for pickup on 2026-11-12.",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e2",
+      "kind": "requested_spec_changed",
+      "message_id": "b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ],
+      "detail": "Customer request interpreted by model; not a commitment",
+      "terms": null,
+      "requested_spec": {
+        "date": {
+          "value": "2026-11-12",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "size": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "product": {
+          "value": "chocolate",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "fulfillment": {
+          "value": "pickup",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        }
+      }
+    },
+    {
+      "id": "e3",
+      "kind": "offered",
+      "message_id": "b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d",
+        "products.chocolate.sizes.1",
+        "policy.pricing",
+        "policy.deposit_percent",
+        "fulfillment.pickup",
+        "policy.lead_days",
+        "policy.daily_capacity",
+        "policy.availability",
+        "policy.hours",
+        "policy.dietary"
+      ],
+      "detail": "offer-3",
+      "terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "demo-30ee0915069943509e3e914c488689ae",
+          "name": "The Little Crumb",
+          "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+          "addons": {
+            "candles": 50,
+            "birthday_topper": 100
+          },
+          "policy": {
+            "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+            "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+            "pricing": "fixed",
+            "lead_days": 2,
+            "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+            "lead_hours": null,
+            "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+            "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "items",
+            "daily_capacity": 3,
+            "deposit_percent": 50,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "",
+          "currency": "INR",
+          "language": "English",
+          "location": "",
+          "products": {
+            "chocolate": {
+              "name": "Chocolate cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 900,
+                "2": 1800,
+                "1.5": 1350
+              }
+            },
+            "red_velvet": {
+              "name": "Red velvet cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 1100,
+                "2": 2200,
+                "1.5": 1650
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "delivery_indiranagar": 100
+          },
+          "approval_rules": [],
+          "customizations": {
+            "eggless": 150,
+            "floral_decoration": 250
+          },
+          "delivery_zones": {},
+          "commercial_reviewed": false,
+          "require_delivery_details": false
+        },
+        "id": "offer-3",
+        "spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          }
+        },
+        "subtotal": 900,
+        "discount_percent": 0,
+        "total": 900,
+        "deposit": 450,
+        "evidence": [
+          "b753c09a-d572-4140-88f9-7bef4e5c919d",
+          "products.chocolate.sizes.1",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "fulfillment.pickup",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-b753c09a-d572-4140-88f9-7bef4e5c919d"
+      },
+      "requested_spec": null
+    },
+    {
+      "id": "e4",
+      "kind": "reply",
+      "message_id": "b753c09a-d572-4140-88f9-7bef4e5c919d",
+      "evidence": [
+        "reply-b753c09a-d572-4140-88f9-7bef4e5c919d"
+      ],
+      "detail": "Customer reply: meta",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e5",
+      "kind": "incoming",
+      "message_id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "evidence": [
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ],
+      "detail": "Please make it eggless with floral decoration.",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e6",
+      "kind": "requested_spec_changed",
+      "message_id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "evidence": [
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ],
+      "detail": "Customer request interpreted by model; not a commitment",
+      "terms": null,
+      "requested_spec": {
+        "date": {
+          "value": "2026-11-12",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "size": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "product": {
+          "value": "chocolate",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "fulfillment": {
+          "value": "pickup",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "customizations": {
+          "value": "eggless,floral_decoration",
+          "evidence": [
+            "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+          ]
+        }
+      }
+    },
+    {
+      "id": "e7",
+      "kind": "offer_invalidated",
+      "message_id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "evidence": [
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ],
+      "detail": "offer-3",
+      "terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "demo-30ee0915069943509e3e914c488689ae",
+          "name": "The Little Crumb",
+          "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+          "addons": {
+            "candles": 50,
+            "birthday_topper": 100
+          },
+          "policy": {
+            "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+            "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+            "pricing": "fixed",
+            "lead_days": 2,
+            "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+            "lead_hours": null,
+            "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+            "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "items",
+            "daily_capacity": 3,
+            "deposit_percent": 50,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "",
+          "currency": "INR",
+          "language": "English",
+          "location": "",
+          "products": {
+            "chocolate": {
+              "name": "Chocolate cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 900,
+                "2": 1800,
+                "1.5": 1350
+              }
+            },
+            "red_velvet": {
+              "name": "Red velvet cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 1100,
+                "2": 2200,
+                "1.5": 1650
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "delivery_indiranagar": 100
+          },
+          "approval_rules": [],
+          "customizations": {
+            "eggless": 150,
+            "floral_decoration": 250
+          },
+          "delivery_zones": {},
+          "commercial_reviewed": false,
+          "require_delivery_details": false
+        },
+        "id": "offer-3",
+        "spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          }
+        },
+        "subtotal": 900,
+        "discount_percent": 0,
+        "total": 900,
+        "deposit": 450,
+        "evidence": [
+          "b753c09a-d572-4140-88f9-7bef4e5c919d",
+          "products.chocolate.sizes.1",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "fulfillment.pickup",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-b753c09a-d572-4140-88f9-7bef4e5c919d"
+      },
+      "requested_spec": null
+    },
+    {
+      "id": "e8",
+      "kind": "offered",
+      "message_id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "evidence": [
+        "b753c09a-d572-4140-88f9-7bef4e5c919d",
+        "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+        "products.chocolate.sizes.1",
+        "policy.pricing",
+        "policy.deposit_percent",
+        "customizations.eggless",
+        "customizations.floral_decoration",
+        "fulfillment.pickup",
+        "policy.lead_days",
+        "policy.daily_capacity",
+        "policy.availability",
+        "policy.hours",
+        "policy.dietary"
+      ],
+      "detail": "offer-8",
+      "terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "demo-30ee0915069943509e3e914c488689ae",
+          "name": "The Little Crumb",
+          "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+          "addons": {
+            "candles": 50,
+            "birthday_topper": 100
+          },
+          "policy": {
+            "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+            "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+            "pricing": "fixed",
+            "lead_days": 2,
+            "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+            "lead_hours": null,
+            "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+            "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "items",
+            "daily_capacity": 3,
+            "deposit_percent": 50,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "",
+          "currency": "INR",
+          "language": "English",
+          "location": "",
+          "products": {
+            "chocolate": {
+              "name": "Chocolate cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 900,
+                "2": 1800,
+                "1.5": 1350
+              }
+            },
+            "red_velvet": {
+              "name": "Red velvet cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 1100,
+                "2": 2200,
+                "1.5": 1650
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "delivery_indiranagar": 100
+          },
+          "approval_rules": [],
+          "customizations": {
+            "eggless": 150,
+            "floral_decoration": 250
+          },
+          "delivery_zones": {},
+          "commercial_reviewed": false,
+          "require_delivery_details": false
+        },
+        "id": "offer-8",
+        "spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "customizations": {
+            "value": "eggless,floral_decoration",
+            "evidence": [
+              "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+            ]
+          }
+        },
+        "subtotal": 1300,
+        "discount_percent": 0,
+        "total": 1300,
+        "deposit": 650,
+        "evidence": [
+          "b753c09a-d572-4140-88f9-7bef4e5c919d",
+          "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+          "products.chocolate.sizes.1",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "customizations.eggless",
+          "customizations.floral_decoration",
+          "fulfillment.pickup",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      },
+      "requested_spec": null
+    },
+    {
+      "id": "e9",
+      "kind": "reply",
+      "message_id": "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+      "evidence": [
+        "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ],
+      "detail": "Customer reply: meta",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e10",
+      "kind": "incoming",
+      "message_id": "92b9db04-de65-4234-addb-0d37559917a8",
+      "evidence": [
+        "92b9db04-de65-4234-addb-0d37559917a8"
+      ],
+      "detail": "Perfect, let's go ahead!",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e11",
+      "kind": "accepted",
+      "message_id": "92b9db04-de65-4234-addb-0d37559917a8",
+      "evidence": [
+        "92b9db04-de65-4234-addb-0d37559917a8",
+        "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      ],
+      "detail": "offer-8",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e12",
+      "kind": "reply",
+      "message_id": "92b9db04-de65-4234-addb-0d37559917a8",
+      "evidence": [
+        "reply-92b9db04-de65-4234-addb-0d37559917a8"
+      ],
+      "detail": "Customer reply: meta",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e13",
+      "kind": "incoming",
+      "message_id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "evidence": [
+        "00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ],
+      "detail": "Actually, please change my cake to pistachio instead.",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e14",
+      "kind": "requested_spec_changed",
+      "message_id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "evidence": [
+        "00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ],
+      "detail": "Customer request interpreted by model; not a commitment",
+      "terms": null,
+      "requested_spec": {
+        "date": {
+          "value": "2026-11-12",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "size": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "product": {
+          "value": "pistachio",
+          "evidence": [
+            "00ffe916-dfd2-4707-9642-e330e917b6b7"
+          ]
+        },
+        "quantity": {
+          "value": "1",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "fulfillment": {
+          "value": "pickup",
+          "evidence": [
+            "b753c09a-d572-4140-88f9-7bef4e5c919d"
+          ]
+        },
+        "customizations": {
+          "value": "eggless,floral_decoration",
+          "evidence": [
+            "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+          ]
+        }
+      }
+    },
+    {
+      "id": "e15",
+      "kind": "offer_invalidated",
+      "message_id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "evidence": [
+        "00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ],
+      "detail": "offer-8",
+      "terms": {
+        "configuration_version": 1,
+        "configuration_snapshot": {
+          "id": "demo-30ee0915069943509e3e914c488689ae",
+          "name": "The Little Crumb",
+          "tone": "Warm, brief, helpful; no pressure or unsupported promises.",
+          "addons": {
+            "candles": 50,
+            "birthday_topper": 100
+          },
+          "policy": {
+            "hours": "10:00–18:00 IST; pickup or delivery within this window; exact slots require owner review",
+            "dietary": "Eggless recipe available; shared kitchen handles eggs, dairy, nuts and gluten. Never guarantee allergen or cross-contact safety. Allergy requirements need owner review.",
+            "pricing": "fixed",
+            "lead_days": 2,
+            "escalation": "Accepted or production changes, allergies, refunds/disputes, unavailable products/dates/slots, ambiguous order association and payment-dependent fulfillment require owner review.",
+            "lead_hours": null,
+            "availability": "Synthetic local capacity ledger only; no real calendar or inventory connection. Acceptance reserves a slot; offers do not reserve capacity.",
+            "cancellation": "Before acceptance: automatic cancellation. After acceptance: owner review; no automatic refunds.",
+            "closed_dates": [],
+            "capacity_unit": "items",
+            "daily_capacity": 3,
+            "deposit_percent": 50,
+            "automatable_actions": [
+              "clarify",
+              "quote",
+              "accept_current_quote",
+              "cancel_unaccepted_draft"
+            ]
+          },
+          "category": "",
+          "currency": "INR",
+          "language": "English",
+          "location": "",
+          "products": {
+            "chocolate": {
+              "name": "Chocolate cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 900,
+                "2": 1800,
+                "1.5": 1350
+              }
+            },
+            "red_velvet": {
+              "name": "Red velvet cake",
+              "unit": "kg",
+              "sizes": {
+                "1": 1100,
+                "2": 2200,
+                "1.5": 1650
+              }
+            }
+          },
+          "extra_units": {},
+          "fulfillment": {
+            "pickup": 0,
+            "delivery_indiranagar": 100
+          },
+          "approval_rules": [],
+          "customizations": {
+            "eggless": 150,
+            "floral_decoration": 250
+          },
+          "delivery_zones": {},
+          "commercial_reviewed": false,
+          "require_delivery_details": false
+        },
+        "id": "offer-8",
+        "spec": {
+          "date": {
+            "value": "2026-11-12",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "size": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "product": {
+            "value": "chocolate",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "quantity": {
+            "value": "1",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "fulfillment": {
+            "value": "pickup",
+            "evidence": [
+              "b753c09a-d572-4140-88f9-7bef4e5c919d"
+            ]
+          },
+          "customizations": {
+            "value": "eggless,floral_decoration",
+            "evidence": [
+              "6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+            ]
+          }
+        },
+        "subtotal": 1300,
+        "discount_percent": 0,
+        "total": 1300,
+        "deposit": 650,
+        "evidence": [
+          "b753c09a-d572-4140-88f9-7bef4e5c919d",
+          "6925d9fc-9909-4fb9-8d01-ff1d9c25c575",
+          "products.chocolate.sizes.1",
+          "policy.pricing",
+          "policy.deposit_percent",
+          "customizations.eggless",
+          "customizations.floral_decoration",
+          "fulfillment.pickup",
+          "policy.lead_days",
+          "policy.daily_capacity",
+          "policy.availability",
+          "policy.hours",
+          "policy.dietary"
+        ],
+        "message_id": "reply-6925d9fc-9909-4fb9-8d01-ff1d9c25c575"
+      },
+      "requested_spec": null
+    },
+    {
+      "id": "e16",
+      "kind": "owner_review",
+      "message_id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "evidence": [
+        "00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ],
+      "detail": "Changes or cancellation after confirmation need owner approval.",
+      "terms": null,
+      "requested_spec": null
+    },
+    {
+      "id": "e17",
+      "kind": "reply",
+      "message_id": "00ffe916-dfd2-4707-9642-e330e917b6b7",
+      "evidence": [
+        "reply-00ffe916-dfd2-4707-9642-e330e917b6b7"
+      ],
+      "detail": "Customer reply: meta",
+      "terms": null,
+      "requested_spec": null
+    }
+  ],
+  "assistant_reply": "I’ll ask the owner to check that change. Your previously confirmed cake details will stay as they are for now."
+}

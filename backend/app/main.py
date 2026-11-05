@@ -98,6 +98,28 @@ def reset(store=Depends(get_store)) -> dict[str, str]:
     return {'status': 'reset'}
 
 
+@app.post('/api/demo/sessions')
+def fresh_demo(store=Depends(get_store)):
+    """Copy published rules into a new synthetic workspace; never reset seller data."""
+    from uuid import uuid4
+    from .database import businesses, configuration_versions
+    from sqlalchemy import insert
+    with store.transaction():
+        version, paused = store.runtime()
+        if not version or paused:
+            raise HTTPException(409, 'Publish and resume the bakery configuration before starting a demo.')
+        bid = 'demo-' + uuid4().hex
+        config = store.catalogue()
+        config['id'] = bid
+        store._session.execute(insert(businesses).values(id=bid, config=config, active_version=1, paused=False))
+        store._session.execute(insert(configuration_versions).values(business_id=bid, version=1, config=config))
+        # Use the same transaction for the empty, inspectable conversation.
+        demo_store = Store(store.engine.url, bid)
+        demo_store._session = store._session
+        demo_store.save(State(id='recording'))
+    return {'business_id': bid, 'conversation_id': 'recording', 'business': config}
+
+
 @app.get('/ready')
 def ready(store=Depends(get_store)):
     # Validates connectivity, schema and the configured business seed.
@@ -117,7 +139,7 @@ from .configuration import (settings, save_draft, onboarding, publish, empty_bus
 def list_businesses(store=Depends(get_store)):
     with store._read() as session:
         rows = session.execute(select(businesses.c.id, businesses.c.config, businesses.c.active_version)
-            .where(~businesses.c.id.like('lab-%'), ~businesses.c.id.like('test-%'))).all()
+            .where(~businesses.c.id.like('lab-%'), ~businesses.c.id.like('test-%'), ~businesses.c.id.like('demo-%'))).all()
         return [{'id':r.id, 'name':r.config['name'] or 'New business', 'active': bool(r.active_version)} for r in rows]
 
 

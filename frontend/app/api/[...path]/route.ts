@@ -6,7 +6,7 @@ async function forward(request: NextRequest, context: { params: Promise<{ path: 
   const { path } = await context.params;
   const endpoint = path.join('/');
   const allowed = /^(?:channels\/instagram(?:\/(?:replays-reset|replays(?:\/[a-zA-Z0-9_-]+(?:\/messages)?)?|accounts\/[a-zA-Z0-9_-]+\/disconnect))?|business\/config|businesses|settings(?:\/(?:draft|chat|publish|pause))?|overview|lab(?:\/(?:runs|reset|runs\/[a-zA-Z0-9_-]+\/step))?|v1\/demo|demo\/reset|conversations\/[a-zA-Z0-9_-]{1,60}(?:\/(?:messages|owner-action))?)$/;
-  if (!allowed.test(endpoint)) return Response.json({ detail: 'Unknown API route.' }, { status: 404 });
+  if (!allowed.test(endpoint) && endpoint !== 'demo/sessions') return Response.json({ detail: 'Unknown API route.' }, { status: 404 });
   const base = process.env.API_INTERNAL_URL || 'http://127.0.0.1:8000';
   try {
     const upstream = await fetch(`${base}/api/${endpoint}`, {
